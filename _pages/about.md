@@ -8,110 +8,43 @@ redirect_from:
 ---
 
 <style>
-/* ========== 深色模式变量 ========== */
-:root {
-  --bg-color: #fff;
-  --text-color: #333;
-  --text-secondary: #555;
-  --card-bg: #fdfcfb;
-  --border-color: #eee;
-  --accent: #c56f6f;
-  --accent-light: #fef5f1;
+/* ========== 渐变动态标题 ========== */
+.gradient-text {
+  background: linear-gradient(90deg, #c56f6f, #e8a0a0, #f0c0a0, #c56f6f);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradient-flow 4s ease infinite;
+  font-weight: 700;
+}
+@keyframes gradient-flow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
-[data-theme="dark"] {
-  --bg-color: #1a1a2e;
-  --text-color: #eee;
-  --text-secondary: #aaa;
-  --card-bg: #16213e;
-  --border-color: #2a2a4a;
-  --accent: #e07777;
-  --accent-light: #2a2040;
-}
-
-/* ========== 深色模式全局覆盖 ========== */
-[data-theme="dark"] body,
-[data-theme="dark"] .masthead,
-[data-theme="dark"] .page__content,
-[data-theme="dark"] .sidebar,
-[data-theme="dark"] .author__content,
-[data-theme="dark"] .author__urls-wrapper,
-[data-theme="dark"] .page__footer {
-  background-color: #1a1a2e !important;
-  color: #eee !important;
-}
-
-[data-theme="dark"] .masthead__inner-wrap,
-[data-theme="dark"] .greedy-nav,
-[data-theme="dark"] .greedy-nav a {
-  background: #16213e !important;
-  color: #eee !important;
-}
-
-[data-theme="dark"] .greedy-nav a:hover {
-  color: #e07777 !important;
-}
-
-[data-theme="dark"] .author__name,
-[data-theme="dark"] .author__bio,
-[data-theme="dark"] .author__urls li a,
-[data-theme="dark"] .page__title,
-[data-theme="dark"] h1, [data-theme="dark"] h2,
-[data-theme="dark"] h3, [data-theme="dark"] h4 {
-  color: #eee !important;
-}
-
-[data-theme="dark"] .author__avatar img {
-  border: 2px solid #2a2a4a;
-}
-
-[data-theme="dark"] .author__urls li a:hover {
-  color: #e07777 !important;
-}
-
-[data-theme="dark"] a {
-  color: #e07777;
-}
-
-[data-theme="dark"] .page__footer {
-  border-top: 1px solid #2a2a4a;
-}
-
-[data-theme="dark"] .page__footer-copyright {
-  color: #aaa !important;
-}
-
-[data-theme="dark"] hr {
-  border-color: #2a2a4a;
-}
-
-[data-theme="dark"] code {
-  background: #2a2040 !important;
-  color: #e07777 !important;
-}
-
-/* ========== 深色模式切换按钮 ========== */
-.theme-toggle {
+/* ========== 鼠标跟随光点 ========== */
+.cursor-dot {
   position: fixed;
-  top: 80px;
-  right: 20px;
-  width: 50px;
-  height: 50px;
+  width: 8px;
+  height: 8px;
+  background: #c56f6f;
   border-radius: 50%;
-  border: none;
-  background: var(--card-bg);
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-  cursor: pointer;
-  font-size: 22px;
-  z-index: 9997;
-  transition: all 0.3s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  pointer-events: none;
+  z-index: 99999;
+  transition: transform 0.1s ease;
+  box-shadow: 0 0 10px #c56f6f, 0 0 20px #c56f6f;
 }
-.theme-toggle:hover {
-  transform: scale(1.1);
-  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+.cursor-ring {
+  position: fixed;
+  width: 30px;
+  height: 30px;
+  border: 2px solid rgba(197, 111, 111, 0.5);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 99998;
+  transition: all 0.15s ease-out;
 }
 
 /* ========== 滚动进度条 ========== */
@@ -120,7 +53,7 @@ redirect_from:
   top: 0;
   left: 0;
   height: 3px;
-  background: linear-gradient(90deg, var(--accent), #e8a0a0);
+  background: linear-gradient(90deg, #c56f6f, #e8a0a0);
   width: 0%;
   z-index: 9999;
   transition: width 0.1s ease;
@@ -133,7 +66,7 @@ redirect_from:
   right: 30px;
   width: 45px;
   height: 45px;
-  background: linear-gradient(135deg, var(--accent), #a85858);
+  background: linear-gradient(135deg, #c56f6f, #a85858);
   color: white;
   border: none;
   border-radius: 50%;
@@ -146,7 +79,7 @@ redirect_from:
   z-index: 9998;
 }
 .back-to-top:hover {
-  transform: translateY(-3px);
+  transform: translateY(-3px) scale(1.1);
   box-shadow: 0 6px 20px rgba(197, 111, 111, 0.5);
 }
 .back-to-top.visible {
@@ -157,11 +90,11 @@ redirect_from:
 /* ========== 打字机效果 ========== */
 .typewriter {
   overflow: hidden;
-  border-right: 2px solid var(--accent);
+  border-right: 2px solid #c56f6f;
   white-space: nowrap;
   animation: typing 3s steps(40, end), blink-caret 0.75s step-end infinite;
   font-size: 1.1em;
-  color: var(--accent);
+  color: #c56f6f;
   font-weight: 500;
 }
 @keyframes typing {
@@ -170,7 +103,7 @@ redirect_from:
 }
 @keyframes blink-caret {
   from, to { border-color: transparent }
-  50% { border-color: var(--accent) }
+  50% { border-color: #c56f6f }
 }
 
 /* ========== GitHub Stats ========== */
@@ -190,35 +123,25 @@ redirect_from:
 }
 
 /* ========== 技能进度条 ========== */
-.skills-section {
-  margin: 20px 0;
-}
-.skill-item {
-  margin-bottom: 15px;
-}
+.skills-section { margin: 20px 0; }
+.skill-item { margin-bottom: 15px; }
 .skill-header {
   display: flex;
   justify-content: space-between;
   margin-bottom: 5px;
   font-size: 0.95em;
-  color: var(--text-color);
 }
-.skill-name {
-  font-weight: 600;
-}
-.skill-percent {
-  color: var(--accent);
-  font-weight: 700;
-}
+.skill-name { font-weight: 600; }
+.skill-percent { color: #c56f6f; font-weight: 700; }
 .skill-bar {
   height: 8px;
-  background: var(--border-color);
+  background: #eee;
   border-radius: 10px;
   overflow: hidden;
 }
 .skill-progress {
   height: 100%;
-  background: linear-gradient(90deg, var(--accent), #e8a0a0);
+  background: linear-gradient(90deg, #c56f6f, #e8a0a0);
   border-radius: 10px;
   width: 0;
   transition: width 1.5s ease-out;
@@ -231,22 +154,74 @@ redirect_from:
   gap: 30px;
   margin: 20px 0;
   padding: 15px;
-  background: var(--card-bg);
+  background: #fdfcfb;
   border-radius: 10px;
-  border: 1px solid var(--border-color);
+  border: 1px solid #eee;
 }
-.stat-item {
-  text-align: center;
-}
+.stat-item { text-align: center; }
 .stat-number {
   font-size: 1.5em;
   font-weight: 700;
-  color: var(--accent);
+  color: #c56f6f;
 }
-.stat-label {
-  font-size: 0.85em;
-  color: var(--text-secondary);
+.stat-label { font-size: 0.85em; color: #888; }
+
+/* ========== 彩蛋提示 ========== */
+.easter-egg-hint {
+  position: fixed;
+  bottom: 10px;
+  left: 10px;
+  font-size: 0.7em;
+  color: #ddd;
+  cursor: default;
+  user-select: none;
 }
+.easter-egg-hint:hover { color: #c56f6f; }
+
+/* ========== 彩蛋弹窗 ========== */
+.konami-popup {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: linear-gradient(135deg, #c56f6f, #e8a0a0);
+  color: white;
+  padding: 40px;
+  border-radius: 20px;
+  text-align: center;
+  z-index: 100000;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+  animation: popup-bounce 0.5s ease;
+}
+@keyframes popup-bounce {
+  0% { transform: translate(-50%, -50%) scale(0); }
+  50% { transform: translate(-50%, -50%) scale(1.1); }
+  100% { transform: translate(-50%, -50%) scale(1); }
+}
+.konami-popup h2 { margin: 0 0 15px 0; font-size: 1.8em; }
+.konami-popup p { margin: 0; font-size: 1.1em; }
+.konami-overlay {
+  display: none;
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 99999;
+}
+
+/* ========== 随机名言 ========== */
+.random-quote {
+  text-align: center;
+  font-style: italic;
+  color: #888;
+  margin: 30px 0;
+  padding: 20px;
+  border-left: 3px solid #c56f6f;
+  background: #fdfcfb;
+  border-radius: 0 8px 8px 0;
+}
+.quote-text { font-size: 1em; margin-bottom: 10px; }
+.quote-author { font-size: 0.85em; color: #aaa; }
 
 /* ========== 原有样式 ========== */
 .interest-pills {
@@ -256,31 +231,33 @@ redirect_from:
   margin: 15px 0 25px 0;
 }
 .interest-pill {
-  background: linear-gradient(135deg, var(--accent-light) 0%, var(--bg-color) 100%);
-  border: 1px solid var(--border-color);
+  background: linear-gradient(135deg, #fef5f1 0%, #fff 100%);
+  border: 1px solid #e8dcd6;
   padding: 6px 14px;
   border-radius: 20px;
   font-size: 0.88em;
-  color: var(--text-secondary);
+  color: #555;
   transition: all 0.2s ease;
+  cursor: default;
 }
 .interest-pill:hover {
-  background: var(--accent);
+  background: #c56f6f;
   color: white;
-  border-color: var(--accent);
-  transform: translateY(-1px);
+  border-color: #c56f6f;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(197, 111, 111, 0.3);
 }
 
 .news-section {
-  background: var(--card-bg);
+  background: #fdfcfb;
   border-radius: 8px;
   padding: 15px 20px;
   margin: 15px 0;
-  border-left: 3px solid var(--accent);
+  border-left: 3px solid #c56f6f;
 }
 .news-item {
   padding: 8px 0;
-  border-bottom: 1px dashed var(--border-color);
+  border-bottom: 1px dashed #eee;
   display: flex;
   align-items: flex-start;
   gap: 12px;
@@ -288,7 +265,7 @@ redirect_from:
 .news-item:last-child { border-bottom: none; }
 .news-date {
   font-weight: 700;
-  color: var(--accent);
+  color: #c56f6f;
   white-space: nowrap;
   min-width: 70px;
 }
@@ -305,7 +282,7 @@ redirect_from:
   top: 5px;
   bottom: 5px;
   width: 2px;
-  background: linear-gradient(to bottom, var(--accent), var(--border-color));
+  background: linear-gradient(to bottom, #c56f6f, #e8dcd6);
 }
 .timeline-item {
   position: relative;
@@ -318,36 +295,19 @@ redirect_from:
   top: 6px;
   width: 12px;
   height: 12px;
-  background: var(--accent);
+  background: #c56f6f;
   border-radius: 50%;
-  border: 2px solid var(--bg-color);
-  box-shadow: 0 0 0 2px var(--accent);
+  border: 2px solid white;
+  box-shadow: 0 0 0 2px #c56f6f;
 }
-.timeline-item h4 {
-  margin: 0 0 4px 0;
-  color: var(--text-color);
-  font-size: 1.05em;
-}
-.timeline-item .meta {
-  color: var(--text-secondary);
-  font-size: 0.9em;
-  margin-bottom: 6px;
-}
-.timeline-item p {
-  margin: 0;
-  color: var(--text-secondary);
-  font-size: 0.95em;
-  line-height: 1.5;
-}
+.timeline-item h4 { margin: 0 0 4px 0; color: #333; font-size: 1.05em; }
+.timeline-item .meta { color: #888; font-size: 0.9em; margin-bottom: 6px; }
+.timeline-item p { margin: 0; color: #555; font-size: 0.95em; line-height: 1.5; }
 
-.project-grid {
-  display: grid;
-  gap: 20px;
-  margin: 20px 0;
-}
+.project-grid { display: grid; gap: 20px; margin: 20px 0; }
 .project-card {
-  background: var(--card-bg);
-  border: 1px solid var(--border-color);
+  background: #fdfcfb;
+  border: 1px solid #eee;
   border-radius: 10px;
   padding: 20px;
   transition: all 0.3s ease;
@@ -355,31 +315,18 @@ redirect_from:
 .project-card:hover {
   box-shadow: 0 8px 25px rgba(197, 111, 111, 0.15);
   transform: translateY(-3px);
-  border-color: var(--accent);
+  border-color: #c56f6f;
 }
-.project-card h3 {
-  margin: 0 0 10px 0;
-  color: var(--accent);
-  font-size: 1.15em;
-}
-.project-card p {
-  margin: 0 0 12px 0;
-  color: var(--text-secondary);
-  font-size: 0.95em;
-  line-height: 1.5;
-}
-.project-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-}
+.project-card h3 { margin: 0 0 10px 0; color: #c56f6f; font-size: 1.15em; }
+.project-card p { margin: 0 0 12px 0; color: #555; font-size: 0.95em; line-height: 1.5; }
+.project-tags { display: flex; flex-wrap: wrap; gap: 6px; }
 .tag {
   display: inline-block;
   padding: 3px 10px;
   font-size: 0.8em;
-  background: var(--accent-light);
+  background: #f0ebe8;
   border-radius: 4px;
-  color: var(--text-secondary);
+  color: #666;
 }
 
 .award-list { margin: 15px 0; }
@@ -387,22 +334,17 @@ redirect_from:
   display: flex;
   align-items: baseline;
   padding: 8px 0;
-  border-bottom: 1px solid var(--border-color);
+  border-bottom: 1px solid #f5f5f5;
 }
 .award-item:last-child { border-bottom: none; }
-.award-year {
-  font-weight: 700;
-  color: var(--accent);
-  min-width: 55px;
-  font-size: 0.95em;
-}
-.award-text { color: var(--text-color); }
+.award-year { font-weight: 700; color: #c56f6f; min-width: 55px; font-size: 0.95em; }
+.award-text { color: #444; }
 
 .section-header {
-  border-bottom: 2px solid var(--accent);
+  border-bottom: 2px solid #c56f6f;
   padding-bottom: 8px;
   margin: 30px 0 15px 0;
-  color: var(--text-color);
+  color: #333;
 }
 
 .welcome-section {
@@ -410,11 +352,7 @@ redirect_from:
   padding: 20px 0 30px 0;
   margin-bottom: 10px;
 }
-.welcome-section h1 {
-  font-size: 2em;
-  margin-bottom: 10px;
-  color: var(--text-color);
-}
+.welcome-section h1 { font-size: 2.2em; margin-bottom: 10px; }
 .welcome-emoji {
   font-size: 1.5em;
   animation: wave 2s ease-in-out infinite;
@@ -430,18 +368,28 @@ redirect_from:
 <!-- 不蒜子统计 -->
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
+<!-- 鼠标光点 -->
+<div class="cursor-dot" id="cursorDot"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
 <!-- 滚动进度条 -->
 <div class="scroll-progress" id="scrollProgress"></div>
-
-<!-- 深色模式切换按钮 -->
-<button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" title="切换深色模式">🌙</button>
 
 <!-- 返回顶部按钮 -->
 <button class="back-to-top" id="backToTop" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">↑</button>
 
+<!-- Konami 彩蛋 -->
+<div class="konami-overlay" id="konamiOverlay" onclick="hideKonami()"></div>
+<div class="konami-popup" id="konamiPopup">
+  <h2>🎉 You found it!</h2>
+  <p>Thanks for exploring! Keep optimizing! 🚀</p>
+  <p style="margin-top: 15px; font-size: 0.9em;">Press anywhere to close</p>
+</div>
+<div class="easter-egg-hint">↑↑↓↓←→←→BA</div>
+
 <!-- 欢迎区域 -->
 <div class="welcome-section">
-  <h1><span class="welcome-emoji">👋</span> Hi, I'm Roky Xing</h1>
+  <h1><span class="welcome-emoji">👋</span> Hi, I'm <span class="gradient-text">Roky Xing</span></h1>
   <div class="typewriter">Building intelligent optimizers & reproducible benchmarks</div>
 </div>
 
@@ -476,45 +424,28 @@ I focus on **learning-augmented optimization**, including EOH (Evolution of Heur
       <span class="skill-name">Python</span>
       <span class="skill-percent">90%</span>
     </div>
-    <div class="skill-bar">
-      <div class="skill-progress" data-width="90"></div>
-    </div>
+    <div class="skill-bar"><div class="skill-progress" data-width="90"></div></div>
   </div>
   <div class="skill-item">
     <div class="skill-header">
       <span class="skill-name">PyTorch / Deep Learning</span>
       <span class="skill-percent">85%</span>
     </div>
-    <div class="skill-bar">
-      <div class="skill-progress" data-width="85"></div>
-    </div>
+    <div class="skill-bar"><div class="skill-progress" data-width="85"></div></div>
   </div>
   <div class="skill-item">
     <div class="skill-header">
       <span class="skill-name">Optimization Algorithms</span>
       <span class="skill-percent">80%</span>
     </div>
-    <div class="skill-bar">
-      <div class="skill-progress" data-width="80"></div>
-    </div>
+    <div class="skill-bar"><div class="skill-progress" data-width="80"></div></div>
   </div>
   <div class="skill-item">
     <div class="skill-header">
       <span class="skill-name">Machine Learning</span>
       <span class="skill-percent">75%</span>
     </div>
-    <div class="skill-bar">
-      <div class="skill-progress" data-width="75"></div>
-    </div>
-  </div>
-  <div class="skill-item">
-    <div class="skill-header">
-      <span class="skill-name">Research & Paper Writing</span>
-      <span class="skill-percent">70%</span>
-    </div>
-    <div class="skill-bar">
-      <div class="skill-progress" data-width="70"></div>
-    </div>
+    <div class="skill-bar"><div class="skill-progress" data-width="75"></div></div>
   </div>
 </div>
 
@@ -569,7 +500,6 @@ I focus on **learning-augmented optimization**, including EOH (Evolution of Heur
       <span class="tag">Python</span>
     </div>
   </div>
-
   <div class="project-card">
     <h3>🎯 MoE-POM Neural Optimizer</h3>
     <p>A MoE-routed optimizer policy inspired by POM/EPOM. Targets robustness across tasks and scale variation, with careful training stability and ablations.</p>
@@ -579,7 +509,6 @@ I focus on **learning-augmented optimization**, including EOH (Evolution of Heur
       <span class="tag">Black-box</span>
     </div>
   </div>
-
   <div class="project-card">
     <h3>🤖 LLM4AD Workflow</h3>
     <p>A Claude/LLM-assisted workflow for paper reading, algorithm design, and experiment automation. Focus on turning reading into runnable baselines.</p>
@@ -604,56 +533,56 @@ I focus on **learning-augmented optimization**, including EOH (Evolution of Heur
   </div>
 </div>
 
-<h2 class="section-header">🎤 Talks</h2>
+<h2 class="section-header">💬 Random Quote</h2>
 
-<div class="timeline">
-  <div class="timeline-item">
-    <h4>From Memory to Thinking: Pretrained Optimizers with Adaptive Reasoning</h4>
-    <div class="meta">Internal seminar · 2025-12 <em style="color:#999">(TODO: verify)</em></div>
-  </div>
+<div class="random-quote" id="randomQuote">
+  <div class="quote-text">"The only way to do great work is to love what you do."</div>
+  <div class="quote-author">— Steve Jobs</div>
 </div>
 
 ---
 
-<p style="text-align: center; color: var(--text-secondary); font-size: 0.85em; margin-top: 40px;">
+<p style="text-align: center; color: #999; font-size: 0.85em; margin-top: 40px;">
   <em>✨ Last updated: December 2024</em>
 </p>
 
 <script>
-// ========== 深色模式切换 ==========
-function toggleTheme() {
-  const html = document.documentElement;
-  const btn = document.getElementById('themeToggle');
+// ========== 鼠标跟随光点 ==========
+const dot = document.getElementById('cursorDot');
+const ring = document.getElementById('cursorRing');
+let mouseX = 0, mouseY = 0;
+let ringX = 0, ringY = 0;
 
-  if (html.getAttribute('data-theme') === 'dark') {
-    html.removeAttribute('data-theme');
-    btn.textContent = '🌙';
-    localStorage.setItem('theme', 'light');
-  } else {
-    html.setAttribute('data-theme', 'dark');
-    btn.textContent = '☀️';
-    localStorage.setItem('theme', 'dark');
-  }
+document.addEventListener('mousemove', (e) => {
+  mouseX = e.clientX;
+  mouseY = e.clientY;
+  dot.style.left = mouseX - 4 + 'px';
+  dot.style.top = mouseY - 4 + 'px';
+});
+
+function animateRing() {
+  ringX += (mouseX - ringX) * 0.15;
+  ringY += (mouseY - ringY) * 0.15;
+  ring.style.left = ringX - 15 + 'px';
+  ring.style.top = ringY - 15 + 'px';
+  requestAnimationFrame(animateRing);
 }
+animateRing();
 
-// 页面加载时检查保存的主题
-(function() {
-  const saved = localStorage.getItem('theme');
-  const btn = document.getElementById('themeToggle');
-  if (saved === 'dark') {
-    document.documentElement.setAttribute('data-theme', 'dark');
-    if (btn) btn.textContent = '☀️';
-  }
-})();
+// 隐藏在移动端
+if ('ontouchstart' in window) {
+  dot.style.display = 'none';
+  ring.style.display = 'none';
+}
 
 // ========== 滚动进度条 & 返回顶部 ==========
 window.addEventListener('scroll', function() {
-  var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-  var scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-  var progress = (scrollTop / scrollHeight) * 100;
+  const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+  const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  const progress = (scrollTop / scrollHeight) * 100;
   document.getElementById('scrollProgress').style.width = progress + '%';
 
-  var backToTop = document.getElementById('backToTop');
+  const backToTop = document.getElementById('backToTop');
   if (scrollTop > 300) {
     backToTop.classList.add('visible');
   } else {
@@ -663,25 +592,87 @@ window.addEventListener('scroll', function() {
 
 // ========== 技能进度条动画 ==========
 function animateSkills() {
-  const skills = document.querySelectorAll('.skill-progress');
-  skills.forEach(skill => {
-    const width = skill.getAttribute('data-width');
-    skill.style.width = width + '%';
+  document.querySelectorAll('.skill-progress').forEach(skill => {
+    skill.style.width = skill.getAttribute('data-width') + '%';
   });
 }
-
-// 页面加载后延迟启动动画
 setTimeout(animateSkills, 500);
 
-// 滚动到技能区域时重新触发动画
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      animateSkills();
-    }
+    if (entry.isIntersecting) animateSkills();
   });
 }, { threshold: 0.5 });
-
 const skillsSection = document.querySelector('.skills-section');
 if (skillsSection) observer.observe(skillsSection);
+
+// ========== Konami Code 彩蛋 ==========
+const konamiCode = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','KeyB','KeyA'];
+let konamiIndex = 0;
+
+document.addEventListener('keydown', (e) => {
+  if (e.code === konamiCode[konamiIndex]) {
+    konamiIndex++;
+    if (konamiIndex === konamiCode.length) {
+      showKonami();
+      konamiIndex = 0;
+    }
+  } else {
+    konamiIndex = 0;
+  }
+});
+
+function showKonami() {
+  document.getElementById('konamiOverlay').style.display = 'block';
+  document.getElementById('konamiPopup').style.display = 'block';
+  // 彩蛋：添加彩色粒子
+  for (let i = 0; i < 50; i++) {
+    createConfetti();
+  }
+}
+
+function hideKonami() {
+  document.getElementById('konamiOverlay').style.display = 'none';
+  document.getElementById('konamiPopup').style.display = 'none';
+}
+
+function createConfetti() {
+  const confetti = document.createElement('div');
+  confetti.style.cssText = `
+    position: fixed;
+    width: 10px; height: 10px;
+    background: hsl(${Math.random()*360}, 80%, 60%);
+    left: ${Math.random() * 100}vw;
+    top: -10px;
+    z-index: 100001;
+    pointer-events: none;
+    border-radius: ${Math.random() > 0.5 ? '50%' : '0'};
+  `;
+  document.body.appendChild(confetti);
+
+  const duration = 2000 + Math.random() * 2000;
+  confetti.animate([
+    { transform: 'translateY(0) rotate(0deg)', opacity: 1 },
+    { transform: `translateY(100vh) rotate(${Math.random()*720}deg)`, opacity: 0 }
+  ], { duration, easing: 'ease-out' });
+
+  setTimeout(() => confetti.remove(), duration);
+}
+
+// ========== 随机名言 ==========
+const quotes = [
+  { text: "The only way to do great work is to love what you do.", author: "Steve Jobs" },
+  { text: "Premature optimization is the root of all evil.", author: "Donald Knuth" },
+  { text: "Simplicity is the ultimate sophistication.", author: "Leonardo da Vinci" },
+  { text: "In theory, there is no difference between theory and practice. In practice, there is.", author: "Yogi Berra" },
+  { text: "The best way to predict the future is to invent it.", author: "Alan Kay" },
+  { text: "Make it work, make it right, make it fast.", author: "Kent Beck" },
+  { text: "Any sufficiently advanced technology is indistinguishable from magic.", author: "Arthur C. Clarke" }
+];
+
+const quote = quotes[Math.floor(Math.random() * quotes.length)];
+document.getElementById('randomQuote').innerHTML = `
+  <div class="quote-text">"${quote.text}"</div>
+  <div class="quote-author">— ${quote.author}</div>
+`;
 </script>
