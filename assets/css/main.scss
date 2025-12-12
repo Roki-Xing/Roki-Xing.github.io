@@ -41,3 +41,115 @@
     "vendor/font-awesome/solid",
     "vendor/font-awesome/brands"
 ;
+
+/* ==========================================================================
+   CUSTOM STYLES - Roky Xing
+   ========================================================================== */
+
+/* Section headers with accent underline */
+.page__content h2 {
+    border-bottom: 2px solid var(--global-link-color);
+    padding-bottom: 0.4em;
+    margin-top: 1.5em;
+}
+
+/* Tag/badge styling */
+.tag, .badge {
+    display: inline-block;
+    padding: 0.2em 0.6em;
+    margin: 0.1em 0.2em;
+    font-size: 0.8em;
+    background-color: #f8f5f2;
+    border: 1px solid #e8e0da;
+    border-radius: 4px;
+    color: #666;
+}
+
+/* News items */
+.news-item {
+    padding: 0.5em 0;
+    border-bottom: 1px dashed #eee;
+}
+.news-item:last-child {
+    border-bottom: none;
+}
+.news-date {
+    font-weight: 600;
+    color: var(--global-link-color);
+}
+
+/* Project cards */
+.project-card {
+    background: #fdfcfb;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    padding: 1.2em;
+    margin-bottom: 1em;
+    transition: box-shadow 0.3s ease, transform 0.2s ease;
+}
+.project-card:hover {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    transform: translateY(-2px);
+}
+.project-card h3 {
+    margin-top: 0;
+    color: var(--global-link-color);
+}
+
+/* Experience timeline style */
+.experience-item {
+    position: relative;
+    padding-left: 1.5em;
+    margin-bottom: 1em;
+    border-left: 2px solid #e8e0da;
+}
+.experience-item::before {
+    content: '';
+    position: absolute;
+    left: -6px;
+    top: 0.5em;
+    width: 10px;
+    height: 10px;
+    background: var(--global-link-color);
+    border-radius: 50%;
+}
+
+/* Award list */
+.award-item {
+    display: flex;
+    align-items: baseline;
+    margin-bottom: 0.5em;
+}
+.award-year {
+    font-weight: 700;
+    color: var(--global-link-color);
+    min-width: 60px;
+}
+
+/* Research interests as pills */
+.interest-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5em;
+    margin: 1em 0;
+}
+.interest-pill {
+    background: linear-gradient(135deg, #fef5f1 0%, #fff 100%);
+    border: 1px solid #e8dcd6;
+    padding: 0.4em 0.8em;
+    border-radius: 20px;
+    font-size: 0.9em;
+    color: #555;
+}
+
+/* Improve sidebar author bio */
+.author__bio {
+    font-size: 0.9em;
+    line-height: 1.5;
+}
+
+/* Better link underline on hover */
+.page__content a:hover {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}

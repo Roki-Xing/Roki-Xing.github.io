@@ -13,68 +13,82 @@ I build **learning-augmented optimizers** and **evaluation pipelines**, focusing
 
 ## Research Interests
 
-- Learning-augmented optimization (EOH, neural optimizers)
-- POM/EPOM-style optimizer policies and training stability
-- Mixture-of-Experts (MoE) for adaptive optimization
-- Black-box optimization benchmarks (BBOB) and reproducible evaluation
-- Efficient models and NAS
-- Quantitative finance and algorithmic trading research
-
----
+<div class="interest-pills">
+  <span class="interest-pill">Learning-augmented Optimization</span>
+  <span class="interest-pill">Neural Optimizers (POM/EPOM)</span>
+  <span class="interest-pill">Mixture-of-Experts (MoE)</span>
+  <span class="interest-pill">Black-box Optimization</span>
+  <span class="interest-pill">Reproducible Benchmarking</span>
+  <span class="interest-pill">Quantitative Finance</span>
+</div>
 
 ## News
 
-- **2025-12**: Developing a MoE-based neural optimizer (MoE-POM) and tightening evaluation protocols for cross-task robustness.
-- **2025-12**: Building an LLM4AD workflow for paper reading, algorithm design, and experiment automation.
-
----
+<div class="news-item">
+  <span class="news-date">2025-12</span> · Developing a MoE-based neural optimizer (MoE-POM) and tightening evaluation protocols for cross-task robustness.
+</div>
+<div class="news-item">
+  <span class="news-date">2025-12</span> · Building an LLM4AD workflow for paper reading, algorithm design, and experiment automation.
+</div>
 
 ## Experience
 
-### Research Experience
-- **2024 - Present**: Undergraduate Researcher @ Xidian University *(TODO: verify lab/advisor)*
-  - Research on learning-augmented optimization: EOH pipelines, neural optimizer policy design (POM/EPOM-style), MoE routing, and reproducible benchmarking and ablation-driven iteration.
+<div class="experience-item">
+  <strong>Undergraduate Researcher</strong> @ Xidian University<br>
+  <small>2024 - Present</small><br>
+  Research on learning-augmented optimization: EOH pipelines, neural optimizer policy design, MoE routing, and reproducible benchmarking.
+</div>
 
-### Education
-- **2024 - Present**: B.S. in Mathematics & Applied Mathematics (信息数学拔尖班) @ Xidian University, Xi'an, China
-  - Core training in analysis, algebra, probability, and optimization, with applied focus on ML systems and evaluation.
-
----
+<div class="experience-item">
+  <strong>B.S. in Mathematics & Applied Mathematics</strong> (信息数学拔尖班)<br>
+  <small>Xidian University · 2024 - Present</small><br>
+  Core training in analysis, algebra, probability, and optimization, with applied focus on ML systems.
+</div>
 
 ## Projects
 
-### EOH (Evolution of Heuristics) Research Toolkit
-A research codebase for generating, evaluating, and iterating on optimization heuristics with reproducible experiment runners and structured logging.
+<div class="project-card">
+  <h3>EOH (Evolution of Heuristics) Research Toolkit</h3>
+  <p>A research codebase for generating, evaluating, and iterating on optimization heuristics with reproducible experiment runners and structured logging.</p>
+  <span class="tag">Optimization</span>
+  <span class="tag">Benchmarking</span>
+  <span class="tag">Python</span>
+</div>
 
-**Tags**: Optimization, Benchmarking, Reproducibility, Python
+<div class="project-card">
+  <h3>MoE-POM (Mixture-of-Experts Neural Optimizer)</h3>
+  <p>A MoE-routed optimizer policy inspired by POM/EPOM. Targets robustness across tasks and scale variation, with careful training stability and ablations.</p>
+  <span class="tag">MoE</span>
+  <span class="tag">Neural Optimizer</span>
+  <span class="tag">Black-box Optimization</span>
+</div>
 
----
-
-### MoE-POM (Mixture-of-Experts Neural Optimizer)
-A MoE-routed optimizer policy inspired by POM/EPOM. Targets robustness across tasks and scale variation, with careful training stability and ablations.
-
-**Tags**: MoE, Neural Optimizer, Black-box Optimization
-
----
-
-### LLM4AD Workflow
-A Claude/LLM-assisted workflow for paper reading, algorithm design, and experiment automation. Focus on turning reading into runnable baselines and evaluations.
-
-**Tags**: LLM, Automation, Research Tooling
-
----
+<div class="project-card">
+  <h3>LLM4AD Workflow</h3>
+  <p>A Claude/LLM-assisted workflow for paper reading, algorithm design, and experiment automation. Focus on turning reading into runnable baselines.</p>
+  <span class="tag">LLM</span>
+  <span class="tag">Automation</span>
+  <span class="tag">Research Tooling</span>
+</div>
 
 ## Awards
 
-- **2025**: Mathematical Modeling Competition Award *(TODO: verify exact award name and organizer)*
-- **2025**: Academic Ranking - Rank 2/31 in major, 4/31 comprehensive *(TODO: verify)*
-
----
+<div class="award-item">
+  <span class="award-year">2025</span>
+  <span>Mathematical Modeling Competition Award <em>(TODO: verify)</em></span>
+</div>
+<div class="award-item">
+  <span class="award-year">2025</span>
+  <span>Academic Ranking - 2/31 in major, 4/31 comprehensive <em>(TODO: verify)</em></span>
+</div>
 
 ## Talks
 
-- **2025-12** *(TODO: verify)*: "From Memory to Thinking: Pretrained Optimizers with Adaptive Reasoning" - Internal seminar / competition presentation
+<div class="experience-item">
+  <strong>From Memory to Thinking: Pretrained Optimizers with Adaptive Reasoning</strong><br>
+  <small>2025-12 · Internal seminar / competition presentation <em>(TODO: verify)</em></small>
+</div>
 
 ---
 
-*Last updated: December 2024*
+<small><em>Last updated: December 2024</em></small>
