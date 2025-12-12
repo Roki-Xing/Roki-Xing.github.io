@@ -383,66 +383,6 @@ redirect_from:
   75% { transform: rotate(-10deg); }
 }
 
-/* ========== 暗黑模式 ========== */
-:root {
-  --bg-color: #fdfcfb;
-  --text-color: #333;
-  --text-secondary: #555;
-  --text-muted: #888;
-  --border-color: #eee;
-  --card-bg: #fdfcfb;
-}
-
-[data-theme="dark"] {
-  --bg-color: #1a1a2e;
-  --text-color: #eee;
-  --text-secondary: #ccc;
-  --text-muted: #999;
-  --border-color: #333;
-  --card-bg: #16213e;
-}
-
-[data-theme="dark"] body,
-[data-theme="dark"] .page__content,
-[data-theme="dark"] .archive {
-  background-color: var(--bg-color) !important;
-  color: var(--text-color) !important;
-}
-
-[data-theme="dark"] .news-section,
-[data-theme="dark"] .project-card,
-[data-theme="dark"] .random-quote,
-[data-theme="dark"] .visitor-stats {
-  background: var(--card-bg) !important;
-  border-color: var(--border-color) !important;
-}
-
-[data-theme="dark"] .skill-bar { background: #333 !important; }
-[data-theme="dark"] .interest-pill { background: var(--card-bg) !important; border-color: var(--border-color) !important; color: var(--text-secondary) !important; }
-[data-theme="dark"] .section-header { color: var(--text-color) !important; }
-[data-theme="dark"] .timeline-item h4, [data-theme="dark"] .project-card h3 { color: #e8a0a0 !important; }
-[data-theme="dark"] .timeline-item p, [data-theme="dark"] .project-card p, [data-theme="dark"] .news-item span { color: var(--text-secondary) !important; }
-[data-theme="dark"] a { color: #e8a0a0 !important; }
-
-.theme-toggle {
-  position: fixed;
-  top: 80px;
-  right: 30px;
-  width: 45px;
-  height: 45px;
-  background: linear-gradient(135deg, #c56f6f, #a85858);
-  color: white;
-  border: none;
-  border-radius: 50%;
-  cursor: pointer;
-  font-size: 20px;
-  box-shadow: 0 4px 15px rgba(197, 111, 111, 0.4);
-  transition: all 0.3s ease;
-  z-index: 9998;
-}
-.theme-toggle:hover { transform: translateY(-3px) scale(1.1); }
-[data-theme="dark"] .theme-toggle { background: linear-gradient(135deg, #f0c0a0, #e8a0a0); }
-
 .click-effect {
   position: fixed;
   pointer-events: none;
@@ -469,9 +409,6 @@ redirect_from:
 <div class="scroll-progress" id="scrollProgress"></div>
 
 <!-- 返回顶部按钮 -->
-
-<!-- 暗黑模式切换按钮 -->
-<button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" title="切换主题">🌙</button>
 
 
 <button class="back-to-top" id="backToTop" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">↑</button>
@@ -646,15 +583,6 @@ I focus on **learning-augmented optimization**, including EOH (Evolution of Heur
 
 <script>
 // ========== 全局函数（需要在 HTML 解析时就可用）==========
-window.toggleTheme = function() {
-  var isDark = document.documentElement.getAttribute("data-theme") === "dark";
-  var newTheme = isDark ? "light" : "dark";
-  document.documentElement.setAttribute("data-theme", newTheme);
-  localStorage.setItem("theme", newTheme);
-  var btn = document.getElementById("themeToggle");
-  if (btn) btn.innerHTML = newTheme === "dark" ? "☀️" : "🌙";
-};
-
 window.hideKonami = function() {
   document.getElementById("konamiOverlay").style.display = "none";
   document.getElementById("konamiPopup").style.display = "none";
@@ -669,14 +597,6 @@ window.showKonami = function() {
 };
 
 window.updateQuote = function() {};
-
-// 立即应用保存的主题
-(function() {
-  var savedTheme = localStorage.getItem("theme");
-  if (savedTheme === "dark" || (!savedTheme && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
-    document.documentElement.setAttribute("data-theme", "dark");
-  }
-})();
 
 document.addEventListener("DOMContentLoaded", function() {
 
@@ -815,13 +735,6 @@ document.addEventListener("DOMContentLoaded", function() {
   setInterval(updateQuote, 15000);
 
 
-
-  // ========== 暗黑模式 ==========
-  // toggleTheme 已在全局定义
-  var btn = document.getElementById("themeToggle");
-  if (btn && document.documentElement.getAttribute("data-theme") === "dark") {
-    btn.innerHTML = "☀️";
-  }
 
   // ========== 鼠标点击特效 ==========
   var emojis = ["❤️", "✨", "💫", "⭐", "🌟", "💖"];
