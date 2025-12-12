@@ -588,6 +588,8 @@ window.hideKonami = function() {
   document.getElementById("konamiPopup").style.display = "none";
 };
 
+window.updateQuote = function() { var el = document.getElementById("randomQuote"); if(el) el.innerHTML = "Loading..."; };
+
 window.showKonami = function() {
   document.getElementById("konamiOverlay").style.display = "block";
   document.getElementById("konamiPopup").style.display = "block";
@@ -596,7 +598,8 @@ window.showKonami = function() {
   }
 };
 
-window.updateQuote = function() {};
+
+
 
 document.addEventListener("DOMContentLoaded", function() {
 
