@@ -222,6 +222,25 @@ redirect_from:
 }
 .quote-text { font-size: 1em; margin-bottom: 10px; }
 .quote-author { font-size: 0.85em; color: #aaa; }
+/* ========== 刷新语录按钮 ========== */
+.refresh-quote-btn {
+  background: transparent;
+  border: 1px solid #c56f6f;
+  color: #c56f6f;
+  padding: 5px 12px;
+  border-radius: 15px;
+  cursor: pointer;
+  margin-top: 12px;
+  font-size: 0.85em;
+  transition: all 0.3s ease;
+}
+.refresh-quote-btn:hover {
+  background: #c56f6f;
+  color: white;
+  transform: scale(1.05);
+}
+
+
 
 /* ========== 原有样式 ========== */
 .interest-pills {
@@ -363,10 +382,84 @@ redirect_from:
   25% { transform: rotate(20deg); }
   75% { transform: rotate(-10deg); }
 }
+
+/* ========== 暗黑模式 ========== */
+:root {
+  --bg-color: #fdfcfb;
+  --text-color: #333;
+  --text-secondary: #555;
+  --text-muted: #888;
+  --border-color: #eee;
+  --card-bg: #fdfcfb;
+}
+
+[data-theme="dark"] {
+  --bg-color: #1a1a2e;
+  --text-color: #eee;
+  --text-secondary: #ccc;
+  --text-muted: #999;
+  --border-color: #333;
+  --card-bg: #16213e;
+}
+
+[data-theme="dark"] body,
+[data-theme="dark"] .page__content,
+[data-theme="dark"] .archive {
+  background-color: var(--bg-color) !important;
+  color: var(--text-color) !important;
+}
+
+[data-theme="dark"] .news-section,
+[data-theme="dark"] .project-card,
+[data-theme="dark"] .random-quote,
+[data-theme="dark"] .visitor-stats {
+  background: var(--card-bg) !important;
+  border-color: var(--border-color) !important;
+}
+
+[data-theme="dark"] .skill-bar { background: #333 !important; }
+[data-theme="dark"] .interest-pill { background: var(--card-bg) !important; border-color: var(--border-color) !important; color: var(--text-secondary) !important; }
+[data-theme="dark"] .section-header { color: var(--text-color) !important; }
+[data-theme="dark"] .timeline-item h4, [data-theme="dark"] .project-card h3 { color: #e8a0a0 !important; }
+[data-theme="dark"] .timeline-item p, [data-theme="dark"] .project-card p, [data-theme="dark"] .news-item span { color: var(--text-secondary) !important; }
+[data-theme="dark"] a { color: #e8a0a0 !important; }
+
+.theme-toggle {
+  position: fixed;
+  top: 80px;
+  right: 30px;
+  width: 45px;
+  height: 45px;
+  background: linear-gradient(135deg, #c56f6f, #a85858);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 20px;
+  box-shadow: 0 4px 15px rgba(197, 111, 111, 0.4);
+  transition: all 0.3s ease;
+  z-index: 9998;
+}
+.theme-toggle:hover { transform: translateY(-3px) scale(1.1); }
+[data-theme="dark"] .theme-toggle { background: linear-gradient(135deg, #f0c0a0, #e8a0a0); }
+
+.click-effect {
+  position: fixed;
+  pointer-events: none;
+  z-index: 99999;
+  animation: click-burst 0.6s ease-out forwards;
+}
+@keyframes click-burst {
+  0% { transform: scale(0) rotate(0deg); opacity: 1; }
+  100% { transform: scale(1.5) rotate(180deg); opacity: 0; }
+}
+
+.project-card { transform-style: preserve-3d; }
+.project-card.tilt-effect { transition: transform 0.1s ease-out, box-shadow 0.3s ease; }
 </style>
 
 <!-- 不蒜子统计 -->
-<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script> -->
 
 <!-- 鼠标光点 -->
 <div class="cursor-dot" id="cursorDot"></div>
@@ -376,6 +469,11 @@ redirect_from:
 <div class="scroll-progress" id="scrollProgress"></div>
 
 <!-- 返回顶部按钮 -->
+
+<!-- 暗黑模式切换按钮 -->
+<button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" title="切换主题">🌙</button>
+
+
 <button class="back-to-top" id="backToTop" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">↑</button>
 
 <!-- Konami 彩蛋 -->
@@ -547,132 +645,215 @@ I focus on **learning-augmented optimization**, including EOH (Evolution of Heur
 </p>
 
 <script>
-// ========== 鼠标跟随光点 ==========
-const dot = document.getElementById('cursorDot');
-const ring = document.getElementById('cursorRing');
-let mouseX = 0, mouseY = 0;
-let ringX = 0, ringY = 0;
+// ========== 全局函数（需要在 HTML 解析时就可用）==========
+window.toggleTheme = function() {
+  var isDark = document.documentElement.getAttribute("data-theme") === "dark";
+  var newTheme = isDark ? "light" : "dark";
+  document.documentElement.setAttribute("data-theme", newTheme);
+  localStorage.setItem("theme", newTheme);
+  var btn = document.getElementById("themeToggle");
+  if (btn) btn.innerHTML = newTheme === "dark" ? "☀️" : "🌙";
+};
 
-document.addEventListener('mousemove', (e) => {
-  mouseX = e.clientX;
-  mouseY = e.clientY;
-  dot.style.left = mouseX - 4 + 'px';
-  dot.style.top = mouseY - 4 + 'px';
-});
+window.hideKonami = function() {
+  document.getElementById("konamiOverlay").style.display = "none";
+  document.getElementById("konamiPopup").style.display = "none";
+};
 
-function animateRing() {
-  ringX += (mouseX - ringX) * 0.15;
-  ringY += (mouseY - ringY) * 0.15;
-  ring.style.left = ringX - 15 + 'px';
-  ring.style.top = ringY - 15 + 'px';
-  requestAnimationFrame(animateRing);
-}
-animateRing();
-
-// 隐藏在移动端
-if ('ontouchstart' in window) {
-  dot.style.display = 'none';
-  ring.style.display = 'none';
-}
-
-// ========== 滚动进度条 & 返回顶部 ==========
-window.addEventListener('scroll', function() {
-  const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-  const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-  const progress = (scrollTop / scrollHeight) * 100;
-  document.getElementById('scrollProgress').style.width = progress + '%';
-
-  const backToTop = document.getElementById('backToTop');
-  if (scrollTop > 300) {
-    backToTop.classList.add('visible');
-  } else {
-    backToTop.classList.remove('visible');
-  }
-});
-
-// ========== 技能进度条动画 ==========
-function animateSkills() {
-  document.querySelectorAll('.skill-progress').forEach(skill => {
-    skill.style.width = skill.getAttribute('data-width') + '%';
-  });
-}
-setTimeout(animateSkills, 500);
-
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) animateSkills();
-  });
-}, { threshold: 0.5 });
-const skillsSection = document.querySelector('.skills-section');
-if (skillsSection) observer.observe(skillsSection);
-
-// ========== Konami Code 彩蛋 ==========
-const konamiCode = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','KeyB','KeyA'];
-let konamiIndex = 0;
-
-document.addEventListener('keydown', (e) => {
-  if (e.code === konamiCode[konamiIndex]) {
-    konamiIndex++;
-    if (konamiIndex === konamiCode.length) {
-      showKonami();
-      konamiIndex = 0;
-    }
-  } else {
-    konamiIndex = 0;
-  }
-});
-
-function showKonami() {
-  document.getElementById('konamiOverlay').style.display = 'block';
-  document.getElementById('konamiPopup').style.display = 'block';
-  // 彩蛋：添加彩色粒子
-  for (let i = 0; i < 50; i++) {
+window.showKonami = function() {
+  document.getElementById("konamiOverlay").style.display = "block";
+  document.getElementById("konamiPopup").style.display = "block";
+  for (var i = 0; i < 50; i++) {
     createConfetti();
   }
-}
+};
 
-function hideKonami() {
-  document.getElementById('konamiOverlay').style.display = 'none';
-  document.getElementById('konamiPopup').style.display = 'none';
-}
+window.updateQuote = function() {};
 
-function createConfetti() {
-  const confetti = document.createElement('div');
-  confetti.style.cssText = `
-    position: fixed;
-    width: 10px; height: 10px;
-    background: hsl(${Math.random()*360}, 80%, 60%);
-    left: ${Math.random() * 100}vw;
-    top: -10px;
-    z-index: 100001;
-    pointer-events: none;
-    border-radius: ${Math.random() > 0.5 ? '50%' : '0'};
-  `;
-  document.body.appendChild(confetti);
+// 立即应用保存的主题
+(function() {
+  var savedTheme = localStorage.getItem("theme");
+  if (savedTheme === "dark" || (!savedTheme && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
+    document.documentElement.setAttribute("data-theme", "dark");
+  }
+})();
 
-  const duration = 2000 + Math.random() * 2000;
-  confetti.animate([
-    { transform: 'translateY(0) rotate(0deg)', opacity: 1 },
-    { transform: `translateY(100vh) rotate(${Math.random()*720}deg)`, opacity: 0 }
-  ], { duration, easing: 'ease-out' });
+document.addEventListener("DOMContentLoaded", function() {
 
-  setTimeout(() => confetti.remove(), duration);
-}
+  var dot = document.getElementById("cursorDot");
+  var ring = document.getElementById("cursorRing");
+  var mouseX = 0, mouseY = 0;
+  var ringX = 0, ringY = 0;
 
-// ========== 随机名言 ==========
-const quotes = [
-  { text: "The only way to do great work is to love what you do.", author: "Steve Jobs" },
-  { text: "Premature optimization is the root of all evil.", author: "Donald Knuth" },
-  { text: "Simplicity is the ultimate sophistication.", author: "Leonardo da Vinci" },
-  { text: "In theory, there is no difference between theory and practice. In practice, there is.", author: "Yogi Berra" },
-  { text: "The best way to predict the future is to invent it.", author: "Alan Kay" },
-  { text: "Make it work, make it right, make it fast.", author: "Kent Beck" },
-  { text: "Any sufficiently advanced technology is indistinguishable from magic.", author: "Arthur C. Clarke" }
-];
+  if (dot && ring) {
+    document.addEventListener("mousemove", function(e) {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+      dot.style.left = mouseX - 4 + "px";
+      dot.style.top = mouseY - 4 + "px";
+    });
 
-const quote = quotes[Math.floor(Math.random() * quotes.length)];
-document.getElementById('randomQuote').innerHTML = `
-  <div class="quote-text">"${quote.text}"</div>
-  <div class="quote-author">— ${quote.author}</div>
-`;
+    function animateRing() {
+      ringX += (mouseX - ringX) * 0.15;
+      ringY += (mouseY - ringY) * 0.15;
+      ring.style.left = ringX - 15 + "px";
+      ring.style.top = ringY - 15 + "px";
+      requestAnimationFrame(animateRing);
+    }
+    animateRing();
+
+    if ("ontouchstart" in window) {
+      dot.style.display = "none";
+      ring.style.display = "none";
+    }
+  }
+
+  window.addEventListener("scroll", function() {
+    var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+    var scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    var progress = (scrollTop / scrollHeight) * 100;
+    var progressBar = document.getElementById("scrollProgress");
+    if (progressBar) progressBar.style.width = progress + "%";
+
+    var backToTop = document.getElementById("backToTop");
+    if (backToTop) {
+      if (scrollTop > 300) {
+        backToTop.classList.add("visible");
+      } else {
+        backToTop.classList.remove("visible");
+      }
+    }
+  });
+
+  function animateSkills() {
+    document.querySelectorAll(".skill-progress").forEach(function(skill) {
+      skill.style.width = skill.getAttribute("data-width") + "%";
+    });
+  }
+  setTimeout(animateSkills, 500);
+
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) animateSkills();
+    });
+  }, { threshold: 0.5 });
+  var skillsSection = document.querySelector(".skills-section");
+  if (skillsSection) observer.observe(skillsSection);
+
+  var konamiCode = ["ArrowUp","ArrowUp","ArrowDown","ArrowDown","ArrowLeft","ArrowRight","ArrowLeft","ArrowRight","KeyB","KeyA"];
+  var konamiIndex = 0;
+
+  document.addEventListener("keydown", function(e) {
+    if (e.code === konamiCode[konamiIndex]) {
+      konamiIndex++;
+      if (konamiIndex === konamiCode.length) {
+        showKonami();
+        konamiIndex = 0;
+      }
+    } else {
+      konamiIndex = 0;
+    }
+  });
+
+  // showKonami 和 hideKonami 已在全局定义
+
+  function createConfetti() {
+    var confetti = document.createElement("div");
+    var hue = Math.random() * 360;
+    var left = Math.random() * 100;
+    var radius = Math.random() > 0.5 ? "50%" : "0";
+    confetti.style.cssText = "position:fixed;width:10px;height:10px;background:hsl(" + hue + ",80%,60%);left:" + left + "vw;top:-10px;z-index:100001;pointer-events:none;border-radius:" + radius + ";";
+    document.body.appendChild(confetti);
+
+    var duration = 2000 + Math.random() * 2000;
+    var rotation = Math.random() * 720;
+    confetti.animate([
+      { transform: "translateY(0) rotate(0deg)", opacity: 1 },
+      { transform: "translateY(100vh) rotate(" + rotation + "deg)", opacity: 0 }
+    ], { duration: duration, easing: "ease-out" });
+
+    setTimeout(function() { confetti.remove(); }, duration);
+  }
+
+  var quotes = [
+    { text: "The only way to do great work is to love what you do.", author: "Steve Jobs" },
+    { text: "Premature optimization is the root of all evil.", author: "Donald Knuth" },
+    { text: "Simplicity is the ultimate sophistication.", author: "Leonardo da Vinci" },
+    { text: "In theory, there is no difference between theory and practice. In practice, there is.", author: "Yogi Berra" },
+    { text: "The best way to predict the future is to invent it.", author: "Alan Kay" },
+    { text: "Make it work, make it right, make it fast.", author: "Kent Beck" },
+    { text: "Any sufficiently advanced technology is indistinguishable from magic.", author: "Arthur C. Clarke" },
+    { text: "Talk is cheap. Show me the code.", author: "Linus Torvalds" },
+    { text: "First, solve the problem. Then, write the code.", author: "John Johnson" },
+    { text: "Code is like humor. When you have to explain it, it is bad.", author: "Cory House" }
+  ];
+
+  var lastQuoteIndex = -1;
+
+  function updateQuote() {
+    var newIndex;
+    do {
+      newIndex = Math.floor(Math.random() * quotes.length);
+    } while (newIndex === lastQuoteIndex && quotes.length > 1);
+    lastQuoteIndex = newIndex;
+
+    var quote = quotes[newIndex];
+    var quoteElement = document.getElementById("randomQuote");
+    if (quoteElement) {
+      quoteElement.style.opacity = "0";
+      quoteElement.style.transition = "opacity 0.3s ease";
+      
+      setTimeout(function() {
+        quoteElement.innerHTML = '<div class="quote-text">"' + quote.text + '"</div><div class="quote-author">— ' + quote.author + '</div><button class="refresh-quote-btn" onclick="window.updateQuote()" title="换一条">🔄 换一条</button>';
+        quoteElement.style.opacity = "1";
+      }, 300);
+    }
+  }
+
+  window.updateQuote = updateQuote;
+  updateQuote();
+  setInterval(updateQuote, 15000);
+
+
+
+  // ========== 暗黑模式 ==========
+  // toggleTheme 已在全局定义
+  var btn = document.getElementById("themeToggle");
+  if (btn && document.documentElement.getAttribute("data-theme") === "dark") {
+    btn.innerHTML = "☀️";
+  }
+
+  // ========== 鼠标点击特效 ==========
+  var emojis = ["❤️", "✨", "💫", "⭐", "🌟", "💖"];
+  document.addEventListener("click", function(e) {
+    if (e.target.tagName === "BUTTON" || e.target.tagName === "A") return;
+    for (var i = 0; i < 3; i++) {
+      var el = document.createElement("div");
+      el.className = "click-effect";
+      el.innerHTML = emojis[Math.floor(Math.random() * emojis.length)];
+      el.style.left = (e.clientX + (Math.random()-0.5)*30) + "px";
+      el.style.top = (e.clientY + (Math.random()-0.5)*30) + "px";
+      el.style.fontSize = (16 + Math.random()*10) + "px";
+      document.body.appendChild(el);
+      setTimeout(function(elem) { return function() { elem.remove(); }; }(el), 700);
+    }
+  });
+
+  // ========== 3D 卡片悬浮 ==========
+  document.querySelectorAll(".project-card").forEach(function(card) {
+    card.classList.add("tilt-effect");
+    card.addEventListener("mousemove", function(e) {
+      var rect = card.getBoundingClientRect();
+      var x = e.clientX - rect.left;
+      var y = e.clientY - rect.top;
+      var rotateX = (y - rect.height/2) / 10;
+      var rotateY = (rect.width/2 - x) / 10;
+      card.style.transform = "perspective(1000px) rotateX(" + rotateX + "deg) rotateY(" + rotateY + "deg) scale3d(1.02,1.02,1.02)";
+    });
+    card.addEventListener("mouseleave", function() {
+      card.style.transform = "perspective(1000px) rotateX(0) rotateY(0) scale3d(1,1,1)";
+    });
+  });
+
+});
 </script>
