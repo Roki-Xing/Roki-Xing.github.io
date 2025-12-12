@@ -8,7 +8,82 @@ redirect_from:
 ---
 
 <style>
-/* Custom styles for this page */
+/* ========== 滚动进度条 ========== */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #c56f6f, #e8a0a0);
+  width: 0%;
+  z-index: 9999;
+  transition: width 0.1s ease;
+}
+
+/* ========== 返回顶部按钮 ========== */
+.back-to-top {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 45px;
+  height: 45px;
+  background: linear-gradient(135deg, #c56f6f, #a85858);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 20px;
+  box-shadow: 0 4px 15px rgba(197, 111, 111, 0.4);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  z-index: 9998;
+}
+.back-to-top:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(197, 111, 111, 0.5);
+}
+.back-to-top.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* ========== 打字机效果 ========== */
+.typewriter {
+  overflow: hidden;
+  border-right: 2px solid #c56f6f;
+  white-space: nowrap;
+  animation: typing 3s steps(40, end), blink-caret 0.75s step-end infinite;
+  font-size: 1.1em;
+  color: #c56f6f;
+  font-weight: 500;
+}
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: #c56f6f }
+}
+
+/* ========== GitHub Stats 卡片容器 ========== */
+.github-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin: 20px 0;
+  justify-content: center;
+}
+.github-stats img {
+  border-radius: 8px;
+  transition: transform 0.3s ease;
+}
+.github-stats img:hover {
+  transform: scale(1.02);
+}
+
+/* ========== 原有样式 ========== */
 .interest-pills {
   display: flex;
   flex-wrap: wrap;
@@ -142,9 +217,7 @@ redirect_from:
   color: #666;
 }
 
-.award-list {
-  margin: 15px 0;
-}
+.award-list { margin: 15px 0; }
 .award-item {
   display: flex;
   align-items: baseline;
@@ -158,9 +231,7 @@ redirect_from:
   min-width: 55px;
   font-size: 0.95em;
 }
-.award-text {
-  color: #444;
-}
+.award-text { color: #444; }
 
 .section-header {
   border-bottom: 2px solid #c56f6f;
@@ -168,13 +239,54 @@ redirect_from:
   margin: 30px 0 15px 0;
   color: #333;
 }
+
+/* ========== 欢迎区域 ========== */
+.welcome-section {
+  text-align: center;
+  padding: 20px 0 30px 0;
+  margin-bottom: 10px;
+}
+.welcome-section h1 {
+  font-size: 2em;
+  margin-bottom: 10px;
+  color: #333;
+}
+.welcome-emoji {
+  font-size: 1.5em;
+  animation: wave 2s ease-in-out infinite;
+  display: inline-block;
+}
+@keyframes wave {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(20deg); }
+  75% { transform: rotate(-10deg); }
+}
 </style>
 
-I'm **Roky Xing (邢若琦)**, an undergraduate researcher in Mathematics & Applied Mathematics at [Xidian University](https://www.xidian.edu.cn/), Xi'an, China.
+<!-- 滚动进度条 -->
+<div class="scroll-progress" id="scrollProgress"></div>
 
-I build **learning-augmented optimizers** and **evaluation pipelines**, focusing on EOH (Evolution of Heuristics), neural optimizers (POM/EPOM-style), MoE routing, and reproducible black-box benchmarking.
+<!-- 返回顶部按钮 -->
+<button class="back-to-top" id="backToTop" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">↑</button>
 
-<h2 class="section-header">Research Interests</h2>
+<!-- 欢迎区域 -->
+<div class="welcome-section">
+  <h1><span class="welcome-emoji">👋</span> Hi, I'm Roky Xing</h1>
+  <div class="typewriter">Building intelligent optimizers & reproducible benchmarks</div>
+</div>
+
+I'm **邢若琦**, an undergraduate researcher in Mathematics & Applied Mathematics at [Xidian University](https://www.xidian.edu.cn/), Xi'an, China.
+
+I focus on **learning-augmented optimization**, including EOH (Evolution of Heuristics), neural optimizers (POM/EPOM-style), MoE routing, and reproducible black-box benchmarking.
+
+<h2 class="section-header">📊 GitHub Stats</h2>
+
+<div class="github-stats">
+  <img src="https://github-readme-stats.vercel.app/api?username=Roki-Xing&show_icons=true&theme=default&hide_border=true&bg_color=fdfcfb&title_color=c56f6f&icon_color=c56f6f&text_color=555" alt="GitHub Stats" />
+  <img src="https://github-readme-streak-stats.herokuapp.com/?user=Roki-Xing&theme=default&hide_border=true&background=fdfcfb&ring=c56f6f&fire=c56f6f&currStreakLabel=c56f6f" alt="GitHub Streak" />
+</div>
+
+<h2 class="section-header">🔬 Research Interests</h2>
 
 <div class="interest-pills">
   <span class="interest-pill">🔬 Learning-augmented Optimization</span>
@@ -185,7 +297,7 @@ I build **learning-augmented optimizers** and **evaluation pipelines**, focusing
   <span class="interest-pill">📈 Quantitative Finance</span>
 </div>
 
-<h2 class="section-header">News</h2>
+<h2 class="section-header">📰 News</h2>
 
 <div class="news-section">
   <div class="news-item">
@@ -198,7 +310,7 @@ I build **learning-augmented optimizers** and **evaluation pipelines**, focusing
   </div>
 </div>
 
-<h2 class="section-header">Experience</h2>
+<h2 class="section-header">🎓 Experience</h2>
 
 <div class="timeline">
   <div class="timeline-item">
@@ -213,7 +325,7 @@ I build **learning-augmented optimizers** and **evaluation pipelines**, focusing
   </div>
 </div>
 
-<h2 class="section-header">Projects</h2>
+<h2 class="section-header">🚀 Projects</h2>
 
 <div class="project-grid">
   <div class="project-card">
@@ -247,7 +359,7 @@ I build **learning-augmented optimizers** and **evaluation pipelines**, focusing
   </div>
 </div>
 
-<h2 class="section-header">Awards</h2>
+<h2 class="section-header">🏆 Awards</h2>
 
 <div class="award-list">
   <div class="award-item">
@@ -260,7 +372,7 @@ I build **learning-augmented optimizers** and **evaluation pipelines**, focusing
   </div>
 </div>
 
-<h2 class="section-header">Talks</h2>
+<h2 class="section-header">🎤 Talks</h2>
 
 <div class="timeline">
   <div class="timeline-item">
@@ -272,5 +384,24 @@ I build **learning-augmented optimizers** and **evaluation pipelines**, focusing
 ---
 
 <p style="text-align: center; color: #999; font-size: 0.85em; margin-top: 40px;">
-  <em>Last updated: December 2024</em>
+  <em>✨ Last updated: December 2024</em>
 </p>
+
+<!-- JavaScript for scroll progress and back-to-top -->
+<script>
+// 滚动进度条
+window.addEventListener('scroll', function() {
+  var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+  var scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  var progress = (scrollTop / scrollHeight) * 100;
+  document.getElementById('scrollProgress').style.width = progress + '%';
+
+  // 返回顶部按钮显示/隐藏
+  var backToTop = document.getElementById('backToTop');
+  if (scrollTop > 300) {
+    backToTop.classList.add('visible');
+  } else {
+    backToTop.classList.remove('visible');
+  }
+});
+</script>
