@@ -8,13 +8,58 @@ redirect_from:
 ---
 
 <style>
+/* ========== 深色模式变量 ========== */
+:root {
+  --bg-color: #fff;
+  --text-color: #333;
+  --text-secondary: #555;
+  --card-bg: #fdfcfb;
+  --border-color: #eee;
+  --accent: #c56f6f;
+  --accent-light: #fef5f1;
+}
+
+[data-theme="dark"] {
+  --bg-color: #1a1a2e;
+  --text-color: #eee;
+  --text-secondary: #aaa;
+  --card-bg: #16213e;
+  --border-color: #2a2a4a;
+  --accent: #e07777;
+  --accent-light: #2a2040;
+}
+
+/* ========== 深色模式切换按钮 ========== */
+.theme-toggle {
+  position: fixed;
+  top: 80px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: none;
+  background: var(--card-bg);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  cursor: pointer;
+  font-size: 22px;
+  z-index: 9997;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.theme-toggle:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
 /* ========== 滚动进度条 ========== */
 .scroll-progress {
   position: fixed;
   top: 0;
   left: 0;
   height: 3px;
-  background: linear-gradient(90deg, #c56f6f, #e8a0a0);
+  background: linear-gradient(90deg, var(--accent), #e8a0a0);
   width: 0%;
   z-index: 9999;
   transition: width 0.1s ease;
@@ -27,7 +72,7 @@ redirect_from:
   right: 30px;
   width: 45px;
   height: 45px;
-  background: linear-gradient(135deg, #c56f6f, #a85858);
+  background: linear-gradient(135deg, var(--accent), #a85858);
   color: white;
   border: none;
   border-radius: 50%;
@@ -51,11 +96,11 @@ redirect_from:
 /* ========== 打字机效果 ========== */
 .typewriter {
   overflow: hidden;
-  border-right: 2px solid #c56f6f;
+  border-right: 2px solid var(--accent);
   white-space: nowrap;
   animation: typing 3s steps(40, end), blink-caret 0.75s step-end infinite;
   font-size: 1.1em;
-  color: #c56f6f;
+  color: var(--accent);
   font-weight: 500;
 }
 @keyframes typing {
@@ -64,10 +109,10 @@ redirect_from:
 }
 @keyframes blink-caret {
   from, to { border-color: transparent }
-  50% { border-color: #c56f6f }
+  50% { border-color: var(--accent) }
 }
 
-/* ========== GitHub Stats 卡片容器 ========== */
+/* ========== GitHub Stats ========== */
 .github-stats {
   display: flex;
   flex-wrap: wrap;
@@ -83,6 +128,65 @@ redirect_from:
   transform: scale(1.02);
 }
 
+/* ========== 技能进度条 ========== */
+.skills-section {
+  margin: 20px 0;
+}
+.skill-item {
+  margin-bottom: 15px;
+}
+.skill-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
+  font-size: 0.95em;
+  color: var(--text-color);
+}
+.skill-name {
+  font-weight: 600;
+}
+.skill-percent {
+  color: var(--accent);
+  font-weight: 700;
+}
+.skill-bar {
+  height: 8px;
+  background: var(--border-color);
+  border-radius: 10px;
+  overflow: hidden;
+}
+.skill-progress {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent), #e8a0a0);
+  border-radius: 10px;
+  width: 0;
+  transition: width 1.5s ease-out;
+}
+
+/* ========== 访客统计 ========== */
+.visitor-stats {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin: 20px 0;
+  padding: 15px;
+  background: var(--card-bg);
+  border-radius: 10px;
+  border: 1px solid var(--border-color);
+}
+.stat-item {
+  text-align: center;
+}
+.stat-number {
+  font-size: 1.5em;
+  font-weight: 700;
+  color: var(--accent);
+}
+.stat-label {
+  font-size: 0.85em;
+  color: var(--text-secondary);
+}
+
 /* ========== 原有样式 ========== */
 .interest-pills {
   display: flex;
@@ -91,31 +195,31 @@ redirect_from:
   margin: 15px 0 25px 0;
 }
 .interest-pill {
-  background: linear-gradient(135deg, #fef5f1 0%, #fff 100%);
-  border: 1px solid #e8dcd6;
+  background: linear-gradient(135deg, var(--accent-light) 0%, var(--bg-color) 100%);
+  border: 1px solid var(--border-color);
   padding: 6px 14px;
   border-radius: 20px;
   font-size: 0.88em;
-  color: #555;
+  color: var(--text-secondary);
   transition: all 0.2s ease;
 }
 .interest-pill:hover {
-  background: #c56f6f;
+  background: var(--accent);
   color: white;
-  border-color: #c56f6f;
+  border-color: var(--accent);
   transform: translateY(-1px);
 }
 
 .news-section {
-  background: #fdfcfb;
+  background: var(--card-bg);
   border-radius: 8px;
   padding: 15px 20px;
   margin: 15px 0;
-  border-left: 3px solid #c56f6f;
+  border-left: 3px solid var(--accent);
 }
 .news-item {
   padding: 8px 0;
-  border-bottom: 1px dashed #eee;
+  border-bottom: 1px dashed var(--border-color);
   display: flex;
   align-items: flex-start;
   gap: 12px;
@@ -123,7 +227,7 @@ redirect_from:
 .news-item:last-child { border-bottom: none; }
 .news-date {
   font-weight: 700;
-  color: #c56f6f;
+  color: var(--accent);
   white-space: nowrap;
   min-width: 70px;
 }
@@ -140,7 +244,7 @@ redirect_from:
   top: 5px;
   bottom: 5px;
   width: 2px;
-  background: linear-gradient(to bottom, #c56f6f, #e8dcd6);
+  background: linear-gradient(to bottom, var(--accent), var(--border-color));
 }
 .timeline-item {
   position: relative;
@@ -153,24 +257,24 @@ redirect_from:
   top: 6px;
   width: 12px;
   height: 12px;
-  background: #c56f6f;
+  background: var(--accent);
   border-radius: 50%;
-  border: 2px solid white;
-  box-shadow: 0 0 0 2px #c56f6f;
+  border: 2px solid var(--bg-color);
+  box-shadow: 0 0 0 2px var(--accent);
 }
 .timeline-item h4 {
   margin: 0 0 4px 0;
-  color: #333;
+  color: var(--text-color);
   font-size: 1.05em;
 }
 .timeline-item .meta {
-  color: #888;
+  color: var(--text-secondary);
   font-size: 0.9em;
   margin-bottom: 6px;
 }
 .timeline-item p {
   margin: 0;
-  color: #555;
+  color: var(--text-secondary);
   font-size: 0.95em;
   line-height: 1.5;
 }
@@ -181,8 +285,8 @@ redirect_from:
   margin: 20px 0;
 }
 .project-card {
-  background: #fdfcfb;
-  border: 1px solid #eee;
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
   border-radius: 10px;
   padding: 20px;
   transition: all 0.3s ease;
@@ -190,16 +294,16 @@ redirect_from:
 .project-card:hover {
   box-shadow: 0 8px 25px rgba(197, 111, 111, 0.15);
   transform: translateY(-3px);
-  border-color: #c56f6f;
+  border-color: var(--accent);
 }
 .project-card h3 {
   margin: 0 0 10px 0;
-  color: #c56f6f;
+  color: var(--accent);
   font-size: 1.15em;
 }
 .project-card p {
   margin: 0 0 12px 0;
-  color: #555;
+  color: var(--text-secondary);
   font-size: 0.95em;
   line-height: 1.5;
 }
@@ -212,9 +316,9 @@ redirect_from:
   display: inline-block;
   padding: 3px 10px;
   font-size: 0.8em;
-  background: #f0ebe8;
+  background: var(--accent-light);
   border-radius: 4px;
-  color: #666;
+  color: var(--text-secondary);
 }
 
 .award-list { margin: 15px 0; }
@@ -222,25 +326,24 @@ redirect_from:
   display: flex;
   align-items: baseline;
   padding: 8px 0;
-  border-bottom: 1px solid #f5f5f5;
+  border-bottom: 1px solid var(--border-color);
 }
 .award-item:last-child { border-bottom: none; }
 .award-year {
   font-weight: 700;
-  color: #c56f6f;
+  color: var(--accent);
   min-width: 55px;
   font-size: 0.95em;
 }
-.award-text { color: #444; }
+.award-text { color: var(--text-color); }
 
 .section-header {
-  border-bottom: 2px solid #c56f6f;
+  border-bottom: 2px solid var(--accent);
   padding-bottom: 8px;
   margin: 30px 0 15px 0;
-  color: #333;
+  color: var(--text-color);
 }
 
-/* ========== 欢迎区域 ========== */
 .welcome-section {
   text-align: center;
   padding: 20px 0 30px 0;
@@ -249,7 +352,7 @@ redirect_from:
 .welcome-section h1 {
   font-size: 2em;
   margin-bottom: 10px;
-  color: #333;
+  color: var(--text-color);
 }
 .welcome-emoji {
   font-size: 1.5em;
@@ -263,8 +366,14 @@ redirect_from:
 }
 </style>
 
+<!-- 不蒜子统计 -->
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
 <!-- 滚动进度条 -->
 <div class="scroll-progress" id="scrollProgress"></div>
+
+<!-- 深色模式切换按钮 -->
+<button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" title="切换深色模式">🌙</button>
 
 <!-- 返回顶部按钮 -->
 <button class="back-to-top" id="backToTop" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">↑</button>
@@ -279,11 +388,73 @@ I'm **邢若琦**, an undergraduate researcher in Mathematics & Applied Mathemat
 
 I focus on **learning-augmented optimization**, including EOH (Evolution of Heuristics), neural optimizers (POM/EPOM-style), MoE routing, and reproducible black-box benchmarking.
 
+<!-- 访客统计 -->
+<div class="visitor-stats">
+  <div class="stat-item">
+    <div class="stat-number" id="busuanzi_value_site_pv">--</div>
+    <div class="stat-label">Total Views</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-number" id="busuanzi_value_site_uv">--</div>
+    <div class="stat-label">Visitors</div>
+  </div>
+</div>
+
 <h2 class="section-header">📊 GitHub Stats</h2>
 
 <div class="github-stats">
   <img src="https://github-readme-stats.vercel.app/api?username=Roki-Xing&show_icons=true&theme=default&hide_border=true&bg_color=fdfcfb&title_color=c56f6f&icon_color=c56f6f&text_color=555" alt="GitHub Stats" />
   <img src="https://github-readme-streak-stats.herokuapp.com/?user=Roki-Xing&theme=default&hide_border=true&background=fdfcfb&ring=c56f6f&fire=c56f6f&currStreakLabel=c56f6f" alt="GitHub Streak" />
+</div>
+
+<h2 class="section-header">💻 Skills</h2>
+
+<div class="skills-section">
+  <div class="skill-item">
+    <div class="skill-header">
+      <span class="skill-name">Python</span>
+      <span class="skill-percent">90%</span>
+    </div>
+    <div class="skill-bar">
+      <div class="skill-progress" data-width="90"></div>
+    </div>
+  </div>
+  <div class="skill-item">
+    <div class="skill-header">
+      <span class="skill-name">PyTorch / Deep Learning</span>
+      <span class="skill-percent">85%</span>
+    </div>
+    <div class="skill-bar">
+      <div class="skill-progress" data-width="85"></div>
+    </div>
+  </div>
+  <div class="skill-item">
+    <div class="skill-header">
+      <span class="skill-name">Optimization Algorithms</span>
+      <span class="skill-percent">80%</span>
+    </div>
+    <div class="skill-bar">
+      <div class="skill-progress" data-width="80"></div>
+    </div>
+  </div>
+  <div class="skill-item">
+    <div class="skill-header">
+      <span class="skill-name">Machine Learning</span>
+      <span class="skill-percent">75%</span>
+    </div>
+    <div class="skill-bar">
+      <div class="skill-progress" data-width="75"></div>
+    </div>
+  </div>
+  <div class="skill-item">
+    <div class="skill-header">
+      <span class="skill-name">Research & Paper Writing</span>
+      <span class="skill-percent">70%</span>
+    </div>
+    <div class="skill-bar">
+      <div class="skill-progress" data-width="70"></div>
+    </div>
+  </div>
 </div>
 
 <h2 class="section-header">🔬 Research Interests</h2>
@@ -383,20 +554,44 @@ I focus on **learning-augmented optimization**, including EOH (Evolution of Heur
 
 ---
 
-<p style="text-align: center; color: #999; font-size: 0.85em; margin-top: 40px;">
+<p style="text-align: center; color: var(--text-secondary); font-size: 0.85em; margin-top: 40px;">
   <em>✨ Last updated: December 2024</em>
 </p>
 
-<!-- JavaScript for scroll progress and back-to-top -->
 <script>
-// 滚动进度条
+// ========== 深色模式切换 ==========
+function toggleTheme() {
+  const html = document.documentElement;
+  const btn = document.getElementById('themeToggle');
+
+  if (html.getAttribute('data-theme') === 'dark') {
+    html.removeAttribute('data-theme');
+    btn.textContent = '🌙';
+    localStorage.setItem('theme', 'light');
+  } else {
+    html.setAttribute('data-theme', 'dark');
+    btn.textContent = '☀️';
+    localStorage.setItem('theme', 'dark');
+  }
+}
+
+// 页面加载时检查保存的主题
+(function() {
+  const saved = localStorage.getItem('theme');
+  const btn = document.getElementById('themeToggle');
+  if (saved === 'dark') {
+    document.documentElement.setAttribute('data-theme', 'dark');
+    if (btn) btn.textContent = '☀️';
+  }
+})();
+
+// ========== 滚动进度条 & 返回顶部 ==========
 window.addEventListener('scroll', function() {
   var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
   var scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
   var progress = (scrollTop / scrollHeight) * 100;
   document.getElementById('scrollProgress').style.width = progress + '%';
 
-  // 返回顶部按钮显示/隐藏
   var backToTop = document.getElementById('backToTop');
   if (scrollTop > 300) {
     backToTop.classList.add('visible');
@@ -404,4 +599,28 @@ window.addEventListener('scroll', function() {
     backToTop.classList.remove('visible');
   }
 });
+
+// ========== 技能进度条动画 ==========
+function animateSkills() {
+  const skills = document.querySelectorAll('.skill-progress');
+  skills.forEach(skill => {
+    const width = skill.getAttribute('data-width');
+    skill.style.width = width + '%';
+  });
+}
+
+// 页面加载后延迟启动动画
+setTimeout(animateSkills, 500);
+
+// 滚动到技能区域时重新触发动画
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      animateSkills();
+    }
+  });
+}, { threshold: 0.5 });
+
+const skillsSection = document.querySelector('.skills-section');
+if (skillsSection) observer.observe(skillsSection);
 </script>
