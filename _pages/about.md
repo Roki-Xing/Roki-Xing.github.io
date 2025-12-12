@@ -29,6 +29,67 @@ redirect_from:
   --accent-light: #2a2040;
 }
 
+/* ========== 深色模式全局覆盖 ========== */
+[data-theme="dark"] body,
+[data-theme="dark"] .masthead,
+[data-theme="dark"] .page__content,
+[data-theme="dark"] .sidebar,
+[data-theme="dark"] .author__content,
+[data-theme="dark"] .author__urls-wrapper,
+[data-theme="dark"] .page__footer {
+  background-color: #1a1a2e !important;
+  color: #eee !important;
+}
+
+[data-theme="dark"] .masthead__inner-wrap,
+[data-theme="dark"] .greedy-nav,
+[data-theme="dark"] .greedy-nav a {
+  background: #16213e !important;
+  color: #eee !important;
+}
+
+[data-theme="dark"] .greedy-nav a:hover {
+  color: #e07777 !important;
+}
+
+[data-theme="dark"] .author__name,
+[data-theme="dark"] .author__bio,
+[data-theme="dark"] .author__urls li a,
+[data-theme="dark"] .page__title,
+[data-theme="dark"] h1, [data-theme="dark"] h2,
+[data-theme="dark"] h3, [data-theme="dark"] h4 {
+  color: #eee !important;
+}
+
+[data-theme="dark"] .author__avatar img {
+  border: 2px solid #2a2a4a;
+}
+
+[data-theme="dark"] .author__urls li a:hover {
+  color: #e07777 !important;
+}
+
+[data-theme="dark"] a {
+  color: #e07777;
+}
+
+[data-theme="dark"] .page__footer {
+  border-top: 1px solid #2a2a4a;
+}
+
+[data-theme="dark"] .page__footer-copyright {
+  color: #aaa !important;
+}
+
+[data-theme="dark"] hr {
+  border-color: #2a2a4a;
+}
+
+[data-theme="dark"] code {
+  background: #2a2040 !important;
+  color: #e07777 !important;
+}
+
 /* ========== 深色模式切换按钮 ========== */
 .theme-toggle {
   position: fixed;
