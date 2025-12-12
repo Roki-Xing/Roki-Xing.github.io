@@ -9,56 +9,44 @@ redirect_from:
 
 {% include base_path %}
 
-Education
-======
-* Ph.D in Version Control Theory, GitHub University, 2018 (expected)
-* M.S. in Jekyll, GitHub University, 2014
-* B.S. in GitHub, GitHub University, 2012
+<!-- TODO: Add PDF download link when CV PDF is ready -->
+<!-- [Download CV (PDF)](/files/cv.pdf) -->
 
-Work experience
-======
-* Spring 2024: Academic Pages Collaborator
-  * GitHub University
-  * Duties includes: Updates and improvements to template
-  * Supervisor: The Users
+## Education
 
-* Fall 2015: Research Assistant
-  * GitHub University
-  * Duties included: Merging pull requests
-  * Supervisor: Professor Hub
+* **B.S. in Mathematics & Applied Mathematics** (信息数学拔尖班)
+  * Xidian University, Xi'an, China
+  * 2024 - Present *(TODO: verify start year)*
+  * Core training in analysis, algebra, probability, and optimization
 
-* Summer 2015: Research Assistant
-  * GitHub University
-  * Duties included: Tagging issues
-  * Supervisor: Professor Git
-  
-Skills
-======
-* Skill 1
-* Skill 2
-  * Sub-skill 2.1
-  * Sub-skill 2.2
-  * Sub-skill 2.3
-* Skill 3
+## Research Experience
 
-Publications
-======
-  <ul>{% for post in site.publications reversed %}
-    {% include archive-single-cv.html %}
-  {% endfor %}</ul>
-  
-Talks
-======
-  <ul>{% for post in site.talks reversed %}
-    {% include archive-single-talk-cv.html  %}
-  {% endfor %}</ul>
-  
-Teaching
-======
-  <ul>{% for post in site.teaching reversed %}
-    {% include archive-single-cv.html %}
-  {% endfor %}</ul>
-  
-Service and leadership
-======
-* Currently signed in to 43 different slack teams
+* **Undergraduate Researcher** @ Xidian University
+  * 2024 - Present *(TODO: verify lab/advisor)*
+  * Research on learning-augmented optimization
+  * Focus: EOH pipelines, neural optimizer policy design (POM/EPOM-style), MoE routing, and reproducible benchmarking
+
+## Skills
+
+* **Programming**: Python, PyTorch
+* **Research Areas**:
+  * Learning-augmented optimization (EOH, neural optimizers)
+  * Mixture-of-Experts (MoE) for adaptive optimization
+  * Black-box optimization benchmarks (BBOB)
+  * Reproducible evaluation and ablation studies
+* **Tools**: Git, Docker, Claude/LLM-assisted workflows
+
+## Projects
+
+* **EOH Research Toolkit**: Reproducible heuristic evaluation framework
+* **MoE-POM**: MoE-routed neural optimizer for cross-task robustness
+* **LLM4AD Workflow**: LLM-assisted paper reading and experiment automation
+
+## Awards
+
+* **2025**: Mathematical Modeling Competition Award *(TODO: verify)*
+* **2025**: Academic Ranking - 2/31 in major *(TODO: verify)*
+
+---
+
+*Last updated: December 2024*
