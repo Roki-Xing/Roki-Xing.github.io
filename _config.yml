@@ -23,7 +23,7 @@ repository               : "Roki-Xing/Roki-Xing.github.io"
 #               Additional customization can be done by editing /_includes/author-profile.html
 author:
   # Biographic information
-  avatar           : "profile.png"
+  avatar           : "avatar.jpg"
   name             : "Ruoqi Xing (邢若琦)"
   pronouns         : # example: "she/her"
   bio              : "Undergraduate student at Xidian University. Interested in learning-augmented optimization and evaluation pipelines."
