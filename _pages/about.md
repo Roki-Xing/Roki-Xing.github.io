@@ -1,9 +1,8 @@
 ---
-permalink: /
+permalink: /about/
 title: "About"
 author_profile: true
 redirect_from:
-  - /about/
   - /about.html
 ---
 
@@ -72,4 +71,3 @@ I’m interested in **learning-augmented optimization** and **evaluation pipelin
   <span class="tag">Automation</span>
   <span class="tag">Research Tooling</span>
 </div>
-

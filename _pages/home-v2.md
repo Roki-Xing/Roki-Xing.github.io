@@ -1,7 +1,9 @@
 ---
-permalink: /v2/
-title: "Home (Preview)"
+permalink: /
+title: "Home"
 author_profile: true
+redirect_from:
+  - /v2/
 ---
 
 <div class="home-v2">
