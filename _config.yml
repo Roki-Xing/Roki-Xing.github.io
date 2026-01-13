@@ -9,9 +9,9 @@
 # Basic Site Settings
 locale                   : "en-US"
 site_theme               : "default" # Currently available options are "default", "air"
-title                    : "Roky Xing"
+title                    : "Ruoqi Xing"
 title_separator          : "-"
-name                     : &name "Roky Xing"
+name                     : &name "Ruoqi Xing"
 description              : &description "Learning-augmented optimization, neural optimizers, MoE routing, and reproducible benchmarking"
 url                      : "https://roki-xing.github.io"
 baseurl                  : ""
@@ -24,13 +24,13 @@ repository               : "Roki-Xing/Roki-Xing.github.io"
 author:
   # Biographic information
   avatar           : "profile.png"
-  name             : "Roky Xing (邢若琦)"
+  name             : "Ruoqi Xing (邢若琦)"
   pronouns         : # example: "she/her"
   bio              : "Undergraduate Researcher at Xidian University. Building learning-augmented optimizers and evaluation pipelines."
   location         : "Xi'an, China"
   employer         : "Xidian University"
   uri              : # URL
-  email            : "18957444596@163.com"
+  email            : "24049200145@stu.xidian.edu.cn"
 
   # Academic websites
   academia         : # URL
