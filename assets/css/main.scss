@@ -160,7 +160,7 @@
 
 .home-v2 {
     --v2-surface: #fff;
-    --v2-border: #e2e8f0;
+    --v2-border: rgba(15, 23, 42, 0.10);
     --v2-shadow: 0 6px 18px rgba(15, 23, 42, 0.06);
     --v2-radius: 14px;
     --v2-muted: #6b7280;
@@ -168,6 +168,25 @@
     font-family: "Inter", -apple-system, ".SFNSText-Regular", "San Francisco", "Roboto", "Segoe UI", "Helvetica Neue", "Lucida Grande", Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    position: relative;
+}
+
+.home-v2::before {
+    content: '';
+    position: absolute;
+    inset: -14px -12px;
+    border-radius: calc(var(--v2-radius) + 8px);
+    background:
+        radial-gradient(600px circle at 12% -8%, rgba(197, 111, 111, 0.12), transparent 60%),
+        radial-gradient(520px circle at 90% 12%, rgba(14, 161, 197, 0.10), transparent 55%),
+        radial-gradient(520px circle at 70% 110%, rgba(197, 111, 111, 0.07), transparent 55%);
+    z-index: 0;
+    pointer-events: none;
+}
+
+.home-v2 > * {
+    position: relative;
+    z-index: 1;
 }
 
 .home-v2 > h2 {

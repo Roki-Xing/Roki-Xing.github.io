@@ -7,6 +7,14 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
+<!-- Force light theme (disable dark mode) -->
+<script>
+  try {
+    localStorage.setItem('theme', 'light');
+    document.documentElement.removeAttribute('data-theme');
+  } catch (e) {}
+</script>
+
 <!-- Support for Academicons -->
 <link rel="stylesheet" href="{{ base_path }}/assets/css/academicons.css"/>
 
