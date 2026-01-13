@@ -78,50 +78,75 @@ author_profile: true
     <span class="news-text">Experimenting with an LLM-assisted workflow for paper reading, algorithm design, and experiment automation.</span>
   </div>
 
-  <h2>Quote</h2>
+  <h2>Hamilton</h2>
 
-  <div class="quote-rotator" aria-live="polite">
-    <p class="quote-rotator__text">All models are wrong, but some are useful.</p>
-    <p class="quote-rotator__author">— George E. P. Box</p>
+  <div class="lyrics-rotator" aria-live="polite">
+    <div class="lyrics-rotator__header">
+      <span class="lyrics-rotator__badge">Musical</span>
+      <a class="lyrics-rotator__link" href="https://hamiltonmusical.com/" target="_blank" rel="noopener">Official site</a>
+    </div>
+    <p class="lyrics-rotator__text">I’m not throwing away my shot.</p>
+    <p class="lyrics-rotator__meta">— Hamilton (Lin-Manuel Miranda)</p>
   </div>
 
   <script>
     (() => {
       const prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      const quotes = [
-        { text: 'All models are wrong, but some are useful.', author: 'George E. P. Box' },
-        { text: 'Simplicity is prerequisite for reliability.', author: 'Edsger W. Dijkstra' },
-        { text: 'What I cannot create, I do not understand.', author: 'Richard P. Feynman' },
-        { text: 'If I have seen further it is by standing on the shoulders of Giants.', author: 'Isaac Newton' },
-        { text: 'We can only see a short distance ahead, but we can see plenty there that needs to be done.', author: 'Alan Turing' },
+      const lines = [
+        "There's a million things I haven’t done. Just you wait.",
+        "I’m not throwing away my shot.",
+        "Rise up. When you’re living on your knees you rise up.",
+        "Raise a glass to freedom,\\nSomething they can never take away.",
+        "Tou want a revolution? I want a revelation.",
+        "“We hold these truths to be self-evident\\nThat all men are created equal.”",
+        "Look around, look around at\\nHow lucky we’re to be alive right now.",
+        "Oceans rise. Empires fall.",
+        "Dying is easy, young man. Living is harder.\\nWhen you got skin in the game you stay in the game.\\nBut you don’t get a win unless you play in the game.",
+        "If there’s a fire you’re trying to douse.\\nYou can’t put it out from inside the house.",
+        "I wanna sit under their own vine and fig tree,\\nA moment alone in the shade.",
+        "I picked up a pen. I wrote my own deliverance.\\nIn the eye of a hurricane. There is quiet.",
+        "We push away what we can never understand.\\nWe push away the unimaginable.",
+        "See them walking in the park long after dark,\\nTaking in the sights of the city.\\nLook into your eyes and the sky’s the limit.",
+        "The feeling of freedom of seeing the light\\nIt’s Ben Franklin with a key and a kite.",
+        "Love|Death|Life doesn’t discriminate between the sinners\\nand the saints. It takes and it takes and it takes.",
+        "I’m not inimitable. I am an original.\\nI’m not standing still. I’m lying in wait.",
+        "Ready for the moment of the adrenaline\\nWhen you finally face your opponent.",
+        "History has its eyes on you.",
+        "You have no control. Who lives. Who dies. Who tells your story.",
+        "The world turned upside down.\\nOh Philip, you outshine the morning sun.",
+        "I’ll do whatever it takes. I’ll make a million mistakes.",
+        "If we lay a strong enough foundation. We’ll pass it on to you.\\nWe’ll give the world to you. You’ll blow us all away.",
+        "I’ll be Socrates throwing verbal rocks at these\\nmediocrities.",
+        "How do you write like you’re running out of time?\\nWrite day and night like you’re running out of time.",
+        "Life, liberty, and the pursuit of happiness.\\nWe fought for these ideals; we shouldn’t settle for less.",
+        "Close your eyes and dream when the night gets dark.",
       ];
 
-      const root = document.querySelector('.quote-rotator');
+      const root = document.querySelector('.lyrics-rotator');
       if (!root) return;
-      const textEl = root.querySelector('.quote-rotator__text');
-      const authorEl = root.querySelector('.quote-rotator__author');
-      if (!textEl || !authorEl || quotes.length === 0) return;
+      const textEl = root.querySelector('.lyrics-rotator__text');
+      if (!textEl || lines.length === 0) return;
 
-      let idx = Math.floor(Math.random() * quotes.length);
-      const render = (q) => {
-        textEl.textContent = q.text;
-        authorEl.textContent = `— ${q.author}`;
+      let idx = Math.floor(Math.random() * lines.length);
+
+      const render = (t) => {
+        textEl.textContent = t;
       };
 
-      render(quotes[idx]);
+      render(lines[idx]);
 
       const tick = () => {
-        idx = (idx + 1) % quotes.length;
-        const q = quotes[idx];
+        idx = (idx + 1) % lines.length;
+        const t = lines[idx];
 
         if (prefersReducedMotion) {
-          render(q);
+          render(t);
           return;
         }
 
         root.classList.add('is-fading');
         window.setTimeout(() => {
-          render(q);
+          render(t);
           root.classList.remove('is-fading');
         }, 220);
       };

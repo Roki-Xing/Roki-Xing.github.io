@@ -401,7 +401,7 @@
     color: #4b5563;
 }
 
-.home-v2 .quote-rotator {
+.home-v2 .lyrics-rotator {
     margin-top: 1em;
     background: var(--v2-surface);
     border: 1px solid var(--v2-border);
@@ -411,7 +411,7 @@
     overflow: hidden;
 }
 
-.home-v2 .quote-rotator::before {
+.home-v2 .lyrics-rotator::before {
     content: '';
     position: absolute;
     left: 0;
@@ -422,22 +422,50 @@
     opacity: 0.55;
 }
 
-.home-v2 .quote-rotator__text {
+.home-v2 .lyrics-rotator__header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1em;
+    margin-bottom: 0.6em;
+}
+
+.home-v2 .lyrics-rotator__badge {
+    font-size: 0.82em;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--v2-muted);
+}
+
+.home-v2 .lyrics-rotator__link {
+    font-size: 0.88em;
+    color: var(--v2-muted);
+    text-decoration: none;
+}
+
+.home-v2 .lyrics-rotator__link:hover {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.home-v2 .lyrics-rotator__text {
     margin: 0;
     font-style: italic;
     color: #374151;
+    white-space: pre-line;
     transition: opacity 200ms ease, transform 200ms ease;
 }
 
-.home-v2 .quote-rotator__author {
+.home-v2 .lyrics-rotator__meta {
     margin: 0.45em 0 0;
     color: var(--v2-muted);
     font-size: 0.92em;
     transition: opacity 200ms ease, transform 200ms ease;
 }
 
-.home-v2 .quote-rotator.is-fading .quote-rotator__text,
-.home-v2 .quote-rotator.is-fading .quote-rotator__author {
+.home-v2 .lyrics-rotator.is-fading .lyrics-rotator__text,
+.home-v2 .lyrics-rotator.is-fading .lyrics-rotator__meta {
     opacity: 0;
     transform: translateY(2px);
 }
