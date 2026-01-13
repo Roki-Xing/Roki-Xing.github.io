@@ -153,3 +153,55 @@
     text-decoration: underline;
     text-underline-offset: 3px;
 }
+
+/* ==========================================================================
+   HOME V2 (STYLE PREVIEW)
+   ========================================================================== */
+
+.home-v2__intro {
+    background: #fdfcfb;
+    border: 1px solid #eee;
+    border-radius: 12px;
+    padding: 1.2em 1.4em;
+    margin-bottom: 1.2em;
+}
+
+.media-card {
+    display: flex;
+    gap: 1.2em;
+    align-items: center;
+    background: #fdfcfb;
+    border: 1px solid #eee;
+    border-radius: 12px;
+    padding: 1.1em 1.2em;
+    margin-bottom: 1em;
+}
+
+.media-card__thumb {
+    flex: 0 0 160px;
+    height: 90px;
+    border-radius: 10px;
+    border: 1px solid #e8dcd6;
+    background: linear-gradient(135deg, #f2f8ff 0%, #fff6ef 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    color: var(--global-link-color);
+    letter-spacing: 0.02em;
+}
+
+.media-card__body {
+    min-width: 0;
+}
+
+@media (max-width: 37.5em) {
+    .media-card {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .media-card__thumb {
+        width: 100%;
+        flex-basis: auto;
+    }
+}
