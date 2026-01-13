@@ -401,6 +401,47 @@
     color: #4b5563;
 }
 
+.home-v2 .quote-rotator {
+    margin-top: 1em;
+    background: var(--v2-surface);
+    border: 1px solid var(--v2-border);
+    border-radius: var(--v2-radius);
+    padding: 1.1em 1.2em;
+    position: relative;
+    overflow: hidden;
+}
+
+.home-v2 .quote-rotator::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: linear-gradient(180deg, rgba(197, 111, 111, 0.75), rgba(14, 161, 197, 0.70));
+    opacity: 0.55;
+}
+
+.home-v2 .quote-rotator__text {
+    margin: 0;
+    font-style: italic;
+    color: #374151;
+    transition: opacity 200ms ease, transform 200ms ease;
+}
+
+.home-v2 .quote-rotator__author {
+    margin: 0.45em 0 0;
+    color: var(--v2-muted);
+    font-size: 0.92em;
+    transition: opacity 200ms ease, transform 200ms ease;
+}
+
+.home-v2 .quote-rotator.is-fading .quote-rotator__text,
+.home-v2 .quote-rotator.is-fading .quote-rotator__author {
+    opacity: 0;
+    transform: translateY(2px);
+}
+
 @media (max-width: 37.5em) {
     .home-v2__top {
         grid-template-columns: 1fr;

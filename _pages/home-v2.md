@@ -77,4 +77,56 @@ author_profile: true
     <span class="news-date">2025-12</span>
     <span class="news-text">Experimenting with an LLM-assisted workflow for paper reading, algorithm design, and experiment automation.</span>
   </div>
+
+  <h2>Quote</h2>
+
+  <div class="quote-rotator" aria-live="polite">
+    <p class="quote-rotator__text">All models are wrong, but some are useful.</p>
+    <p class="quote-rotator__author">— George E. P. Box</p>
+  </div>
+
+  <script>
+    (() => {
+      const prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const quotes = [
+        { text: 'All models are wrong, but some are useful.', author: 'George E. P. Box' },
+        { text: 'Simplicity is prerequisite for reliability.', author: 'Edsger W. Dijkstra' },
+        { text: 'What I cannot create, I do not understand.', author: 'Richard P. Feynman' },
+        { text: 'If I have seen further it is by standing on the shoulders of Giants.', author: 'Isaac Newton' },
+        { text: 'We can only see a short distance ahead, but we can see plenty there that needs to be done.', author: 'Alan Turing' },
+      ];
+
+      const root = document.querySelector('.quote-rotator');
+      if (!root) return;
+      const textEl = root.querySelector('.quote-rotator__text');
+      const authorEl = root.querySelector('.quote-rotator__author');
+      if (!textEl || !authorEl || quotes.length === 0) return;
+
+      let idx = Math.floor(Math.random() * quotes.length);
+      const render = (q) => {
+        textEl.textContent = q.text;
+        authorEl.textContent = `— ${q.author}`;
+      };
+
+      render(quotes[idx]);
+
+      const tick = () => {
+        idx = (idx + 1) % quotes.length;
+        const q = quotes[idx];
+
+        if (prefersReducedMotion) {
+          render(q);
+          return;
+        }
+
+        root.classList.add('is-fading');
+        window.setTimeout(() => {
+          render(q);
+          root.classList.remove('is-fading');
+        }, 220);
+      };
+
+      window.setInterval(tick, 6500);
+    })();
+  </script>
 </div>
