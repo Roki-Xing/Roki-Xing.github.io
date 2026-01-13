@@ -158,23 +158,62 @@
    HOME V2 (STYLE PREVIEW)
    ========================================================================== */
 
+.home-v2 {
+    --v2-surface: #fdfcfb;
+    --v2-border: #eee;
+    --v2-shadow: 0 6px 18px rgba(0,0,0,0.08);
+}
+
 .home-v2__intro {
-    background: #fdfcfb;
-    border: 1px solid #eee;
+    background: linear-gradient(135deg, #f7fbff 0%, var(--v2-surface) 45%, #fff7f0 100%);
+    border: 1px solid var(--v2-border);
     border-radius: 12px;
     padding: 1.2em 1.4em;
     margin-bottom: 1.2em;
+}
+
+.home-v2__intro p {
+    margin: 0.35em 0;
+}
+
+.home-v2__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5em;
+    margin-top: 0.8em;
+}
+
+.home-v2__chip {
+    display: inline-block;
+    padding: 0.28em 0.75em;
+    border-radius: 999px;
+    border: 1px solid #e8dcd6;
+    background: rgba(255, 255, 255, 0.85);
+    color: inherit;
+    text-decoration: none;
+    font-size: 0.9em;
+}
+
+.home-v2__chip:hover {
+    box-shadow: 0 3px 10px rgba(0,0,0,0.06);
+    transform: translateY(-1px);
 }
 
 .media-card {
     display: flex;
     gap: 1.2em;
     align-items: center;
-    background: #fdfcfb;
-    border: 1px solid #eee;
+    background: var(--v2-surface);
+    border: 1px solid var(--v2-border);
     border-radius: 12px;
     padding: 1.1em 1.2em;
     margin-bottom: 1em;
+    transition: box-shadow 0.25s ease, transform 0.2s ease;
+}
+
+.media-card:hover {
+    box-shadow: var(--v2-shadow);
+    transform: translateY(-2px);
 }
 
 .media-card__thumb {
@@ -191,8 +230,28 @@
     letter-spacing: 0.02em;
 }
 
+.media-card__thumb--eoh {
+    background: linear-gradient(135deg, #eaf3ff 0%, #ffffff 55%, #fff3e9 100%);
+}
+
+.media-card__thumb--moe {
+    background: linear-gradient(135deg, #eefbf4 0%, #ffffff 55%, #eef2ff 100%);
+}
+
+.media-card__thumb--bench {
+    background: linear-gradient(135deg, #fff2f6 0%, #ffffff 55%, #f3f7ff 100%);
+}
+
 .media-card__body {
     min-width: 0;
+}
+
+.media-card__desc {
+    color: #666;
+}
+
+.media-card__tags {
+    margin-top: 0.6em;
 }
 
 @media (max-width: 37.5em) {
