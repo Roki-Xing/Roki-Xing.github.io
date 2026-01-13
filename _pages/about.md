@@ -7,7 +7,7 @@ redirect_from:
   - /about.html
 ---
 
-I'm **Ruoqi Xing (邢若琦)**, an undergraduate researcher in Mathematics & Applied Mathematics at [Xidian University](https://www.xidian.edu.cn/), Xi'an, China.
+I'm **Ruoqi Xing (邢若琦)**, an undergraduate student in Mathematics & Applied Mathematics at [Xidian University](https://www.xidian.edu.cn/), Xi'an, China.
 
 Email: [24049200145@stu.xidian.edu.cn](mailto:24049200145@stu.xidian.edu.cn)
 
@@ -27,18 +27,18 @@ I’m interested in **learning-augmented optimization** and **evaluation pipelin
 ## News
 
 <div class="news-item">
-  <span class="news-date">2025-12</span> · Developing a MoE-based neural optimizer (MoE-POM) and tightening evaluation protocols for cross-task robustness.
+  <span class="news-date">2025-12</span> · Exploring a MoE-based neural optimizer (MoE-POM) and improving evaluation protocols for cross-task robustness.
 </div>
 <div class="news-item">
-  <span class="news-date">2025-12</span> · Building an LLM4AD workflow for paper reading, algorithm design, and experiment automation.
+  <span class="news-date">2025-12</span> · Experimenting with an LLM-assisted workflow for paper reading, algorithm design, and experiment automation.
 </div>
 
 ## Experience
 
 <div class="experience-item">
-  <strong>Undergraduate Researcher</strong> @ Xidian University<br>
+  <strong>Undergraduate student</strong> @ Xidian University<br>
   <small>2024 - Present</small><br>
-  Research on learning-augmented optimization: EOH pipelines, neural optimizer policy design, MoE routing, and reproducible benchmarking.
+  Interested in learning-augmented optimization: EOH pipelines, neural optimizer policy design, MoE routing, and reproducible benchmarking.
 </div>
 
 <div class="experience-item">
@@ -73,24 +73,3 @@ I’m interested in **learning-augmented optimization** and **evaluation pipelin
   <span class="tag">Research Tooling</span>
 </div>
 
-## Awards
-
-<div class="award-item">
-  <span class="award-year">2025</span>
-  <span>Mathematical Modeling Competition Award <em>(TODO: verify)</em></span>
-</div>
-<div class="award-item">
-  <span class="award-year">2025</span>
-  <span>Academic Ranking - 2/31 in major, 4/31 comprehensive <em>(TODO: verify)</em></span>
-</div>
-
-## Talks
-
-<div class="experience-item">
-  <strong>From Memory to Thinking: Pretrained Optimizers with Adaptive Reasoning</strong><br>
-  <small>2025-12 · Internal seminar / competition presentation <em>(TODO: verify)</em></small>
-</div>
-
----
-
-<small><em>Last updated: December 2024</em></small>
