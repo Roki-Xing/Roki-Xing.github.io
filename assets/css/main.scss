@@ -177,9 +177,9 @@
     inset: -14px -12px;
     border-radius: calc(var(--v2-radius) + 8px);
     background:
-        radial-gradient(600px circle at 12% -8%, rgba(197, 111, 111, 0.12), transparent 60%),
-        radial-gradient(520px circle at 90% 12%, rgba(14, 161, 197, 0.10), transparent 55%),
-        radial-gradient(520px circle at 70% 110%, rgba(197, 111, 111, 0.07), transparent 55%);
+        radial-gradient(600px circle at 12% -8%, rgba(197, 111, 111, 0.16), transparent 60%),
+        radial-gradient(520px circle at 90% 12%, rgba(14, 161, 197, 0.14), transparent 55%),
+        radial-gradient(520px circle at 70% 110%, rgba(197, 111, 111, 0.10), transparent 55%);
     z-index: 0;
     pointer-events: none;
 }
@@ -201,8 +201,8 @@
     display: block;
     width: 48px;
     height: 2px;
-    background: var(--global-link-color);
-    opacity: 0.35;
+    background: linear-gradient(90deg, var(--global-link-color), #0ea1c5);
+    opacity: 0.6;
     margin-top: 0.35em;
     border-radius: 999px;
 }
@@ -297,12 +297,26 @@
     border-radius: var(--v2-radius);
     padding: 1.1em 1.2em;
     margin-bottom: 1em;
-    transition: box-shadow 0.25s ease, border-color 0.2s ease;
+    position: relative;
+    overflow: hidden;
+    transition: box-shadow 0.25s ease, border-color 0.2s ease, transform 0.2s ease;
 }
 
 .home-v2 .media-card:hover {
     box-shadow: var(--v2-shadow);
     border-color: #d0d5dd;
+    transform: translateY(-2px);
+}
+
+.home-v2 .media-card::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: linear-gradient(180deg, rgba(197, 111, 111, 0.75), rgba(14, 161, 197, 0.70));
+    opacity: 0.55;
 }
 
 .home-v2 .media-card__thumb {
@@ -322,15 +336,15 @@
 }
 
 .home-v2 .media-card__thumb--eoh {
-    background: var(--v2-muted-bg);
+    background: linear-gradient(135deg, rgba(14, 161, 197, 0.20) 0%, var(--v2-muted-bg) 62%, #fff 100%);
 }
 
 .home-v2 .media-card__thumb--moe {
-    background: var(--v2-muted-bg);
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.16) 0%, var(--v2-muted-bg) 62%, #fff 100%);
 }
 
 .home-v2 .media-card__thumb--bench {
-    background: var(--v2-muted-bg);
+    background: linear-gradient(135deg, rgba(197, 111, 111, 0.18) 0%, var(--v2-muted-bg) 62%, #fff 100%);
 }
 
 .home-v2 .media-card__body {
@@ -361,7 +375,7 @@
 }
 
 .home-v2 .interest-pill {
-    background: var(--v2-muted-bg);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, var(--v2-muted-bg) 100%);
     border-color: var(--v2-border);
     color: #4b5563;
     font-size: 0.88em;
