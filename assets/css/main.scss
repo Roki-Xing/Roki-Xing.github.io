@@ -165,6 +165,9 @@
     --v2-radius: 14px;
     --v2-muted: #6b7280;
     --v2-muted-bg: #f8fafc;
+    font-family: "Inter", -apple-system, ".SFNSText-Regular", "San Francisco", "Roboto", "Segoe UI", "Helvetica Neue", "Lucida Grande", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 .home-v2 > h2 {
@@ -293,10 +296,10 @@
     align-items: center;
     justify-content: center;
     font-weight: 700;
-    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-    font-size: 0.95em;
+    font-size: 0.88em;
     color: #334155;
-    letter-spacing: 0.06em;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
 }
 
 .home-v2 .media-card__thumb--eoh {
@@ -358,7 +361,7 @@
     color: var(--v2-muted);
     font-weight: 600;
     min-width: 72px;
-    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    font-variant-numeric: tabular-nums;
 }
 
 .home-v2 .news-text {
