@@ -11,7 +11,7 @@ I'm **Ruoqi Xing (邢若琦)**, an undergraduate researcher in Mathematics & App
 
 Email: [24049200145@stu.xidian.edu.cn](mailto:24049200145@stu.xidian.edu.cn)
 
-I build **learning-augmented optimizers** and **evaluation pipelines**, focusing on EOH (Evolution of Heuristics), neural optimizers (POM/EPOM-style), MoE routing, and reproducible black-box benchmarking.
+I’m interested in **learning-augmented optimization** and **evaluation pipelines**, and I’m currently exploring EOH (Evolution of Heuristics), neural optimizers (POM/EPOM-style), MoE routing, and reproducible black-box benchmarking.
 
 ## Research Interests
 
